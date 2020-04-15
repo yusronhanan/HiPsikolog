@@ -28,8 +28,8 @@ Handle anything about authentication : Login, Register (Create Account for Clien
     public function login_client()
     {
         $data = array(
-            'clientEmail' => $this->input->post('clientEmail'),
-            'clientPassword' => $this->input->post('clientPassword')
+            'clientEmail' => $this->input->post('email'),
+            'clientPassword' => $this->input->post('password')
         );
         $query = $this->db->where($data)->get('client');
 		return ($query->num_rows() > 0); /* if exist return true, false otherwise  */
@@ -38,8 +38,8 @@ Handle anything about authentication : Login, Register (Create Account for Clien
     public function login_psy()
     {
         $data = array(
-            'psyEmail' => $this->input->post('psyEmail'),
-            'psyPassword' => $this->input->post('psyPassword')
+            'psyEmail' => $this->input->post('email'),
+            'psyPassword' => $this->input->post('password')
         );
         $query = $this->db->where($data)->get('psy');
 		return ($query->num_rows() > 0); /* if exist return true, false otherwise  */
@@ -48,8 +48,8 @@ Handle anything about authentication : Login, Register (Create Account for Clien
     public function login_admin()
     {
         $data = array(
-            'adminEmail' => $this->input->post('adminEmail'),
-            'adminPassword' => $this->input->post('adminPassword')
+            'adminEmail' => $this->input->post('email'),
+            'adminPassword' => $this->input->post('password')
         );
         $query = $this->db->where($data)->get('admin');
 		return ($query->num_rows() > 0); /* if exist return true, false otherwise  */
