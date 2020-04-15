@@ -42,7 +42,7 @@ class Auth extends CI_Controller {
       
       } else () {
       
-        redirect('/Home/login')
+        redirect('/Home/login');
       
       }
     }
