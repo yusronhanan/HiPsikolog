@@ -9,7 +9,6 @@ Handle anything about Client
     
     public function edit_client($client_id,$photo){
         $data = array(
-            'clientID' => $client_id,
             'clientName' => $this->input->post('clientName'),
             'clientEmail' => $this->input->post('clientEmail'),
             'clientPassword' => $this->input->post('clientPassword'),
@@ -19,12 +18,12 @@ Handle anything about Client
             $data['clientPhoto'] = $photo['file_name'];
         }
         
-        $this->db->update('client', $data);
+        $this->db->where('clientID',$client_id)->update('client', $data);
 		return ($this->db->affected_rows() > 0); /* if success return true, false otherwise  */
     }
 
     public function delete_client($client_id){
-        $this->db->where('client_id',$client_id)
+        $this->db->where('clientID',$client_id)
                 ->delete('client');
         
         return ($this->db->affected_rows() > 0); /* if success return true, false otherwise  */
