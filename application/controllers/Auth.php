@@ -10,22 +10,40 @@ class Auth extends CI_Controller {
     {
         parent::__construct();
         //load_model
-        $this->load->model('Mod');
+        $this->load->model('M_auth');
+        $this->load->library('session');
     }
 
     public function login(){
-      $username = $this->input->post('usr');
-      $password = $this->input->post('pwd');
 
-      if ($this->Mod->login($data)){
-        $session_data = array(
-          'username' => $data['username']
-        );
-        $this->session->set_userdata('logged_in', $session_data);
+      if ($this->M_auth->login_client()){      
+        
         redirect('/Home');
-      } else {
-        $data['error_message'] = 'Invalid Username or Password';
-        $this->load->view('login', $data);
+
+      } else if ($this->M_auth->login_psy()) {
+        
+        $data = array(
+          'id'=>$this->M_auth->login_psy['id'],
+          'name'=>$this->M_auth->login_psy['name'],
+          'role'=>$this->M_auth->login_psy['role'],
+        );
+        
+        $this->session->set_userdata($data);
+        redirect('/Home')
+
+      } else if ($this->M_auth->login_admin()) {
+        $data = array(
+          'id'=>$this->M_auth->login_admin['id'],
+          'name'=>$this->M_auth->login_admin['name'],
+          'role'=>$this->M_auth->login_admin['role'],
+        );
+      
+        $this->session->set_userdata($data)
+      
+      } else () {
+      
+        redirect('/Home/login');
+      
       }
     }
 
@@ -38,7 +56,7 @@ class Auth extends CI_Controller {
     public function logout()
     {
       $this->session->sess_destroy();
-      redirect('Auth');
+      redirect('/Home/login');
     }
 }
 

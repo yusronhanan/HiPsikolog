@@ -59,6 +59,12 @@ Handle anything about pyschologist
                         ->row();
     }
 
+    public function get_Psy_ByEmail($psy_email){
+        return $this->db->where('psyEmail',$psy_email)
+                        ->get('psy')
+                        ->row();
+    }
+
     public function get_Psy_ByWhere($where){
         return $this->db->where($where)
                         ->get('psy')

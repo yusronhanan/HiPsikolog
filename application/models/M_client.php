@@ -47,6 +47,12 @@ Handle anything about Client
                         ->row();
     }
 
+    public function get_Client_ByEmail($client_email){
+        return $this->db->where('clientEmail',$client_email)
+                        ->get('client')
+                        ->row();
+    }
+
     public function get_Client_ByWhere($where){
         return $this->db->where($where)
                         ->get('client')
