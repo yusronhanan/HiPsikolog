@@ -60,6 +60,12 @@ Handle anything about pyschologist
                         ->row();
     }
 
+    public function get_Psy_ByWhere($where){
+        return $this->db->where($where)
+                        ->get('psy')
+                        ->result();
+    }
+
     public function randomString_psyID()
     {
         $id = random_string('alnum', 10);

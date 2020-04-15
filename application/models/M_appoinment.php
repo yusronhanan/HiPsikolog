@@ -8,7 +8,6 @@ Handle anything about appoinment (Counseling Transactions)
 */
     public function add_appoinment(){
         
-        
     }
     
     public function edit_appoinment($appoinment_id){
