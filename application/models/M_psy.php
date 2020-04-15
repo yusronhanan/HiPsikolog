@@ -6,30 +6,70 @@ class M_psy extends CI_Model {
 /*
 Handle anything about pyschologist
 */
-    public function add_psy(){
-        
+    public function add_psy($photo){
+         
+         $data = array(
+            'psyID' => randomString_psyID(), /* Using random String to generate the ID*/
+            'psyName' => $this->input->post('psyName'),
+            'psyEmail' => $this->input->post('psyEmail'),
+            'psyPassword' => $this->input->post('psyPassword'),
+            'psyPhoneNumber' => $this->input->post('psyPhoneNumber'),
+            'psyPhoto' => $photo['file_name']
+        );
+
+        $this->db->insert('psy', $data);
+		return ($this->db->affected_rows() > 0); /* if success return true, false otherwise  */
     }
     
-    public function edit_psy($psy_id){
+    public function edit_psy($psy_id,$photo){
+        $data = array(
+            'psyID' => $psy_id,
+            'psyName' => $this->input->post('psyName'),
+            'psyEmail' => $this->input->post('psyEmail'),
+            'psyPassword' => $this->input->post('psyPassword'),
+            'psyPhoneNumber' => $this->input->post('psyPhoneNumber')
+        );
+        if(!empty($photo)){
+            $data['psyPhoto'] = $photo['file_name'];
+        }
         
+        $this->db->update('psy', $data);
+		return ($this->db->affected_rows() > 0); /* if success return true, false otherwise  */
     }
 
     public function delete_psy($psy_id){
-        
+        $this->db->where('psy_id',$psy_id)
+                ->delete('psy');
+                
+		return ($this->db->affected_rows() > 0); /* if success return true, false otherwise  */
     }
     
     public function get_AllPsy(){
-        //return ;
+        return $this->db->get('psy')->result();
     }
 
     public function get_AllPsy_limit($limit,$start){
-        //return ;
+        return $this->db->limit($limit,$start)
+                        ->get('psy')
+                        ->result();
     }
 
     public function get_Psy_ById($psy_id){
-        //return ;
+        return $this->db->where('psyID',$psy_id)
+                        ->get('psy')
+                        ->row();
     }
 
+    public function randomString_psyID()
+    {
+        $id = random_string('alnum', 10);
+        $query = $this->db->where('psyID',$id)->get('psy');
+		if ($query->num_rows() > 0){
+            return randomString_psyID();
+        } else{
+            return $id;
+        }
+    }
 }
 
 /* End of file M_psy.php */

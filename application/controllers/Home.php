@@ -5,6 +5,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home extends CI_Controller {
 /*
   Handle anything about view only. There is no any transactions. Only display
+
+  "Modal" is pop up view
 */
   
       public function __construct()

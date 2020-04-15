@@ -16,6 +16,11 @@ class Auth extends CI_Controller {
         
     }
 
+    
+    public function logout()
+    {
+        
+    }
 }
 
 /* End of file Auth.php */
