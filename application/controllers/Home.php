@@ -46,6 +46,7 @@ class Home extends CI_Controller {
       public function appoinmentlist()
       {
         /* Add and Edit will be included in this view, using modal */
+        
       }
 
       public function psychologistlist()
