@@ -6,7 +6,9 @@ class Home extends CI_Controller {
 /*
   Handle anything about view only. There is no any transactions. Only display
 
-  "Modal" is pop up view
+  - "Modal" is pop up view
+  - v_layout contains header and footer
+  - main_view will be loaded inside v_layout
 */
   
       public function __construct()
@@ -19,7 +21,10 @@ class Home extends CI_Controller {
       
       public function index() /* Beranda */
         {
-        $this->load->view('welcome_message');
+          $data['title'] = 'Home';
+          $data['main_view'] = 'v_home';
+
+          $this->load->view('v_layout',$data);
             
       }
 
