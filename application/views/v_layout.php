@@ -28,14 +28,23 @@
 							<ul class="navbar-nav ml-auto py-4 py-md-0">
 								
 								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-									<a class="nav-link" href="#">Home</a>
+									<a class="nav-link" href="<?= site_url('home') ?>">Home</a>
 								</li>
 								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-									<a class="nav-link" href="#">Counselling</a>
+									<a class="nav-link" href="<?= site_url('home/counselling') ?>">Counselling</a>
 								</li>
+								<?php if(!$this->session->userdata('logged_in')) {?>
 								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-									<a class="nav-link" href="#">Login/My Account</a>
+									<a class="nav-link" href="<?= site_url('home/login') ?>">Login</a>
 								</li>
+								<?php } else{ ?>
+									<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+										<a class="nav-link" href="<?= site_url('home/myappointment') ?>">My Appointment</a>
+									</li>
+									<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+										<a class="nav-link" href="<?= site_url('auth/logout') ?>">Logout</a>
+									</li>
+									<?php } ?>
                                 <!-- 
                                     <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
 									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>

@@ -2,9 +2,9 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Appoinment extends CI_Controller {
+class Appointment extends CI_Controller {
 /*
-  Handle anything about appoinment. There is no any load view here. Only add, edit, delete, transaction process.
+  Handle anything about appointment. There is no any load view here. Only add, edit, delete, transaction process.
 */
 
     public function __construct()
@@ -19,6 +19,6 @@ class Appoinment extends CI_Controller {
 
 }
 
-/* End of file Appoinment.php */
+/* End of file Appointment.php */
 
 ?>

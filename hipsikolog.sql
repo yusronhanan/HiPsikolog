@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2020 at 07:12 PM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.11
+-- Generation Time: Apr 16, 2020 at 07:57 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -44,22 +44,6 @@ INSERT INTO `admin` (`adminID`, `adminName`, `adminEmail`, `adminPassword`) VALU
 ('hisssgaknV', 'Yusron', 'yusron@gmail.com', '12121212'),
 ('skuttZjmxY', 'Farhan', 'farhan@gmail.com', '14141414'),
 ('tZuyuXevEz', 'Yusuf', 'yusuf@gmail.com', '88888888');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `appoinment`
---
-
-CREATE TABLE `appoinment` (
-  `appoinmentID` varchar(11) NOT NULL,
-  `counsellingID` varchar(11) NOT NULL,
-  `clientID` varchar(11) NOT NULL,
-  `psyID` varchar(11) NOT NULL,
-  `date` date NOT NULL,
-  `time` time NOT NULL,
-  `status` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -110,6 +94,7 @@ INSERT INTO `client` (`clientID`, `clientName`, `clientEmail`, `clientPassword`,
 ('TjkmsERFko', 'Juki', 'juki@gmail.com', '24967351', '084637951248', 'client19.jpg'),
 ('VbnsmporDF', 'Giffari', 'giffari@gmail.com', '23465985', '081359467258', 'client14.jpg'),
 ('VOPdallqwd', 'Momo', 'momo@gmail.com', '55562148', '089546317564', 'client29.jpg'),
+('W9PviHNSAx', 'Hanan', 'hanan@gmail.com', 'hanan', '08227615192', 'cartoon-young-man-icon-vector-12133300.jpg'),
 ('XXZZZbnYY', 'Mina', 'mina@gmail.com', '03122000', '081349556256', 'client28.jpg');
 
 -- --------------------------------------------------------
@@ -130,10 +115,10 @@ CREATE TABLE `counsellingpackage` (
 --
 
 INSERT INTO `counsellingpackage` (`counsellingID`, `counsellingName`, `counsellingDuration`, `counsellingPrice`) VALUES
-('01', 'Paket Perkenalan', '1 X 1 Minggu', 100),
-('02', 'Paket Lega', '4 X 1 Bulan', 350),
-('03', 'Paket Nyaman', '8 X 2 Bulan', 640),
-('04', 'Paket Bahagia', '12 X 4 Bulan', 924);
+('1', 'Paket Perkenalan', '1 X 1 Minggu', 100000),
+('2', 'Paket Lega', '4 X 1 Bulan', 350000),
+('3', 'Paket Nyaman', '8 X 2 Bulan', 640000),
+('4', 'Paket Bahagia', '12 X 4 Bulan', 924000);
 
 -- --------------------------------------------------------
 
@@ -197,15 +182,6 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`adminID`);
 
 --
--- Indexes for table `appoinment`
---
-ALTER TABLE `appoinment`
-  ADD PRIMARY KEY (`appoinmentID`),
-  ADD KEY `client_appoinment_fk` (`clientID`),
-  ADD KEY `psy_appoinment_fk` (`psyID`),
-  ADD KEY `counselling_appoinment_fk` (`counsellingID`);
-
---
 -- Indexes for table `client`
 --
 ALTER TABLE `client`
@@ -222,18 +198,6 @@ ALTER TABLE `counsellingpackage`
 --
 ALTER TABLE `psy`
   ADD PRIMARY KEY (`psyID`);
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `appoinment`
---
-ALTER TABLE `appoinment`
-  ADD CONSTRAINT `client_appoinment_fk` FOREIGN KEY (`clientID`) REFERENCES `client` (`clientID`),
-  ADD CONSTRAINT `counselling_appoinment_fk` FOREIGN KEY (`counsellingID`) REFERENCES `counsellingpackage` (`counsellingID`),
-  ADD CONSTRAINT `psy_appoinment_fk` FOREIGN KEY (`psyID`) REFERENCES `psy` (`psyID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

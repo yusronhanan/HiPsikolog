@@ -26,73 +26,36 @@ class Home extends CI_Controller {
         {
           $data['title'] = 'Home';
           $data['main_view'] = 'v_home';
-
           $this->load->view('v_layout',$data);
             
       }
 
       public function register()
       {
-        $email = $this->input->post('clientEmail');
-		    $password = $this->input->post('clientPassword');
-		    $repass = $this->input->post('re-password');
-		    if($email){
-          if ($password == $repass) {
-            if (!$this->M_auth->check_email_client($email)){
-              $initialize = $this->upload->initialize(array(
-                'upload_path' => './assets/img/',
-                'allowed_types' => 'gif|jpg|jpeg|png'
-              ));
-              if($this->upload->do_upload('uploadImage')){
-                $photo = $this->upload->data();
-                if ($this->M_auth->register($photo)) {
-                  $session_data = array(
-                    'username' => $this->input->post('clientName')
-                  );
-                  $this->session->set_userdata('logged_in', $session_data);
-                  redirect('/home'); /* need to modified */
-                } else {
-                  $data['main_view'] = 'v_register';
-                  $data['error_message'] = 'Failed to register account';
-                  $this->load->view('v_layout', $data);
-                }
-              } else {
-                $data['main_view'] = 'v_register';
-                $data['error_message'] = 'Failed to upload image';
-                $this->load->view('v_layout', $data);
-              }
-            } else {
-              $data['main_view'] = 'v_register';
-              $data['error_message'] = 'Username already exist';
-              $this->load->view('v_layout', $data);
-            }
-          } else {
-            $data['main_view'] = 'v_register';
-            $data['error_message'] = 'Password and Re-Enter Password is not match';
-            $this->load->view('v_layout', $data);
-          }
-        } else {
+         /* If the status already login (logged_in = true), redirect to home, load register view otherwise
+         - Masa udah login, bisa regsiter ? kan ngga */
+         if ($this->session->userdata('logged_in')) { 
+          redirect('home');
+        } else{
           $data['title'] = 'Register';
           $data['main_view'] = 'v_register';
 			    $this->load->view('v_layout', $data);
         }
+          
       }
 
       public function login()
       {
-        if($this->input->post('email')){
-          if($this->M_auth->login_client()||$this->M_auth->login_psy()||$this->M_auth->login_admin()){
-            redirect('/home');
-          } else {
-            $data['main_view'] = 'v_login';
-				    $data['error_message'] = 'Invalid Username or Password';
-				    $this->load->view('v_layout', $data);
-          }
-        } else {
+        /* If the status already login (logged_in = true), redirect to home, load login view otherwise
+        - Masa udah login, bisa balik ke halaman login lagi ? kan ngga */
+        if ($this->session->userdata('logged_in')) { 
+          redirect('home');
+        } else{
           $data['title'] = 'Login';
           $data['main_view'] = 'v_login';
 			    $this->load->view('v_layout', $data);
         }
+          
       }
 
       /* END No need to login Pages */
@@ -100,7 +63,7 @@ class Home extends CI_Controller {
 
       /* START Admin Pages (Need Login)*/
 
-      public function appoinmentlist()
+      public function appointmentlist()
       {
         /* Add and Edit will be included in this view, using modal */
         
@@ -123,25 +86,27 @@ class Home extends CI_Controller {
 
       /* START Client Pages (Need Login)*/
 
-      public function counsellingpackage()
+      public function counselling()
       {
-        /* "Request an appoinment" view will be included in this view, using modal, 
-        then it will redirect to psychologistAppoinment() to choose the psychologist for the appoinment */
+        /* 
+        Display counselling package price and can directly doing request an appointment
+        "Request an appointment" view will be included in this view, using modal, 
+        then it will redirect to psychologistAppointment() to choose the psychologist for the appointment */
 
         
       }
       
-      public function psychologistAppoinment() 
+      public function psychologistAppointment() 
       {
-        /* View psychologist information in List, its the pages to choose the psychologist for the appoinment
+        /* View psychologist information in List, its the pages to choose the psychologist for the appointment
         "Psychologist information in detail" will be included in this view, using modal */
 
       }
 
-      public function myappoinment()
+      public function myappointment()
       {
         /* View psychologist information will be included in this view, using modal 
-        "Appoinment information in detail" will be included in this view, using modal */
+        "Appointment information in detail" will be included in this view, using modal */
         
       }
       

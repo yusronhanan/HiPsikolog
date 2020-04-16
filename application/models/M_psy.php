@@ -9,7 +9,7 @@ Handle anything about pyschologist
     public function add_psy($photo){
          
          $data = array(
-            'psyID' => randomString_psyID(), /* Using random String to generate the ID*/
+            'psyID' => $this->randomString_psyID(), /* Using random String to generate the ID*/
             'psyName' => $this->input->post('psyName'),
             'psyEmail' => $this->input->post('psyEmail'),
             'psyPassword' => $this->input->post('psyPassword'),

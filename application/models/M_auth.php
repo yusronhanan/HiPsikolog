@@ -11,10 +11,8 @@ Handle anything about authentication : Login, Register (Create Account for Clien
     {
         /* Register, create account for client only */
 
-        
-
         $data = array(
-            'clientID' => $this->M_auth->randomString_clientID(), /* Using random String to generate the ID*/
+            'clientID' => $this->randomString_clientID(), /* Using random String to generate the ID*/
             'clientName' => $this->input->post('clientName'),
             'clientEmail' => $this->input->post('clientEmail'),
             'clientPassword' => $this->input->post('clientPassword'),

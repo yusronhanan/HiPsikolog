@@ -2,16 +2,17 @@
 
 </header>
 <section class="py-5">
-  <div class="container">
-    <form action="<?= site_url('home/register') ?>" method="post" enctype="multipart/form-data">
+  <div class="container col-lg-6" style="margin-top:50px">
+  <center>
+    <form action="<?= site_url('auth/register') ?>" method="post" enctype="multipart/form-data">
 		<h2>Register</h2>
-	    <?php if(isset($error_message)) { ?>
+	    <?php if(!empty($this->session->flashdata('notif'))) { ?>
 	    <div class="alert alert-danger" role="alert">
-		    <?= $error_message ?>
+		    <?= $this->session->flashdata('notif'); ?>
 	    </div>
 	    <?php } ?>
 	    <div class="form-group">
-		    <input type="text" class="form-control" name="clientName" placeholder="Username" required>
+		    <input type="text" class="form-control" name="clientName" placeholder="Name" required>
 	    </div>
         <div class="form-group">
 		    <input type="email" class="form-control" name="clientEmail" placeholder="E-mail" required>
@@ -34,9 +35,12 @@
 			    <label class="custom-file-label text-left" for="uploadImage">Choose file</label>
 		    </div>
 	    </div>
-	    <button type="submit" class="btn btn-primary">Register</button>
+		</center>
+	    <button type="submit" class="btn btn-primary float-right">Register</button>
+		<br><br>
 	    <p>Already have an account? Login <a href="<?= site_url('home/login') ?>">here</a></p>
     </form>
+	
   </div>
 </section>
 <script src="<?= base_url() ?>assets/js/jquery.min.js"></script>

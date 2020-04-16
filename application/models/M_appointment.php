@@ -2,15 +2,15 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_appoinment extends CI_Model {
+class M_appointment extends CI_Model {
 /*
-Handle anything about appoinment (Counseling Transactions)
+Handle anything about appointment (Counseling Transactions)
 
-Appoinment Status : requested, accepted, cancelled, or done.
+Appointment Status : requested, accepted, cancelled, or done.
 */
-    public function add_appoinment(){
+    public function add_appointment(){
         $data = array(
-            'appoinmentID' => randomString_appoinmentID(),
+            'appointmentID' => $this->randomString_appointmentID(),
             'counsellingID' => $this->input->post('counsellingID'),
             'clientID' => $this->input->post('clientID'),
             'psyID' => $this->input->post('psyID'),
@@ -19,11 +19,11 @@ Appoinment Status : requested, accepted, cancelled, or done.
             'status' => $this->input->post('status')
         );
 
-        $this->db->insert('appoinment', $data);
+        $this->db->insert('appointment', $data);
 		return ($this->db->affected_rows() > 0); /* if success return true, false otherwise  */
     }
     
-    public function edit_appoinment($appoinment_id){
+    public function edit_appointment($appointment_id){
         $data = array(
             'counsellingID' => $this->input->post('counsellingID'),
             'clientID' => $this->input->post('clientID'),
@@ -33,20 +33,20 @@ Appoinment Status : requested, accepted, cancelled, or done.
             'status' => $this->input->post('status')
         );
 
-        $this->db->where('appoinmentID',$appoinment_id)->update('appoinment', $data);
+        $this->db->where('appointmentID',$appointment_id)->update('appointment', $data);
 		return ($this->db->affected_rows() > 0); /* if success return true, false otherwise  */
     }
     
-    public function delete_appoinment($appoinment_id){
-        $this->db->where('appoinmentID',$appoinment_id)
-                ->delete('appoinment');
+    public function delete_appointment($appointment_id){
+        $this->db->where('appointmentID',$appointment_id)
+                ->delete('appointment');
                 
 		return ($this->db->affected_rows() > 0); /* if success return true, false otherwise  */
     }
     
-    public function request_appoinment(){
+    public function request_appointment(){
         $data = array(
-            'appoinmentID' => randomString_appoinmentID(),
+            'appointmentID' => randomString_appointmentID(),
             'counsellingID' => $this->input->post('counsellingID'),
             'clientID' => $this->input->post('clientID'),
             'psyID' => $this->input->post('psyID'),
@@ -55,53 +55,53 @@ Appoinment Status : requested, accepted, cancelled, or done.
             'status' => 'requested'
         );
 
-        $this->db->insert('appoinment', $data);
+        $this->db->insert('appointment', $data);
 		return ($this->db->affected_rows() > 0); /* if success return true, false otherwise  */
     }
 
-    public function reply_requestAppoinment($appoinment_id){
+    public function reply_requestAppointment($appointment_id){
         $data = array(
-            'status' => $this->input->post('status') /* Appoinment Status will change either cancelled or accepted. */
+            'status' => $this->input->post('status') /* Appointment Status will change either cancelled or accepted. */
         );
 
-        $this->db->where('appoinmentID',$appoinment_id)->update('appoinment', $data);
+        $this->db->where('appointmentID',$appointment_id)->update('appointment', $data);
 		return ($this->db->affected_rows() > 0); /* if success return true, false otherwise  */
     }
     
-    public function get_AllAppoinment(){
-        return $this->db->get('appoinment')->result();
+    public function get_AllAppointment(){
+        return $this->db->get('appointment')->result();
     }
 
-    public function get_AllAppoinment_limit($limit,$start){
+    public function get_AllAppointment_limit($limit,$start){
         return $this->db->limit($limit,$start)
-                        ->get('appoinment')
+                        ->get('appointment')
                         ->result();
     }
 
-    public function get_Appoinment_ById($appoinment_id){
-        return $this->db->where('appoinmentID',$appoinment_id)
-                        ->get('appoinment')
+    public function get_Appointment_ById($appointment_id){
+        return $this->db->where('appointmentID',$appointment_id)
+                        ->get('appointment')
                         ->row();
     }
 
-    public function get_Appoinment_ByWhere($where){
+    public function get_Appointment_ByWhere($where){
         return $this->db->where($where)
-                        ->get('appoinment')
+                        ->get('appointment')
                         ->result();
     }
 
-    public function randomString_appoinmentID()
+    public function randomString_appointmentID()
     {
         $id = random_string('alnum', 10);
-        $query = $this->db->where('appoinmentID',$id)->get('appoinment');
+        $query = $this->db->where('appointmentID',$id)->get('appointment');
 		if ($query->num_rows() > 0){
-            return randomString_appoinmentID();
+            return randomString_appointmentID();
         } else{
             return $id;
         }
     }
 }
 
-/* End of file M_appoinment.php */
+/* End of file M_appointment.php */
 
 ?>
