@@ -105,6 +105,14 @@ class Home extends CI_Controller {
       {
         /* View psychologist information in List, its the pages to choose the psychologist for the appointment
         "Psychologist information in detail" will be included in this view, using modal */
+        if (!$this->session->userdata('logged_in')) { 
+          redirect('/home/login');
+        } else{
+          $data['title'] = 'Psychologist Appointment';
+          $data['main_view'] = 'v_psyAppointment';
+          $data['psyAppointment'] = $this->M_psy->get_AllPsy();
+			    $this->load->view('v_layout', $data);
+        }
 
       }
 
