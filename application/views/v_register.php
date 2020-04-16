@@ -2,7 +2,7 @@
 
 </header>
 <section class="py-5">
-  <div class="container col-lg-6" style="margin-top:50px">
+  <div class="container col-lg-6 main-div">
   <center>
     <form action="<?= site_url('auth/register') ?>" method="post" enctype="multipart/form-data">
 		<h2>Register</h2>

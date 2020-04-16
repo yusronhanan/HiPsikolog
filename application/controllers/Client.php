@@ -9,7 +9,10 @@ class Client extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        //load_model
+        $this->load->model('M_client');
+        $this->load->model('M_psy');
+        $this->load->model('M_appointment');
+
     }
     public function index()
     {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2020 at 07:57 AM
+-- Generation Time: Apr 16, 2020 at 03:30 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -107,18 +107,18 @@ CREATE TABLE `counsellingpackage` (
   `counsellingID` varchar(11) NOT NULL,
   `counsellingName` varchar(200) NOT NULL,
   `counsellingDuration` varchar(50) NOT NULL,
-  `counsellingPrice` int(50) NOT NULL
+  `counsellingPrice` int(50) NOT NULL,
+  `counsellingDesc` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `counsellingpackage`
 --
 
-INSERT INTO `counsellingpackage` (`counsellingID`, `counsellingName`, `counsellingDuration`, `counsellingPrice`) VALUES
-('1', 'Paket Perkenalan', '1 X 1 Minggu', 100000),
-('2', 'Paket Lega', '4 X 1 Bulan', 350000),
-('3', 'Paket Nyaman', '8 X 2 Bulan', 640000),
-('4', 'Paket Bahagia', '12 X 4 Bulan', 924000);
+INSERT INTO `counsellingpackage` (`counsellingID`, `counsellingName`, `counsellingDuration`, `counsellingPrice`, `counsellingDesc`) VALUES
+('1', 'Introduction Package', '1 times in 1 week', 100000, 'For the first time, we provide the Introduction Package as the counselling to build trust and comfort settings.'),
+('2', 'Comfortable Package', '4 times in 1 months', 350000, 'Trust issue just solved. Feel free to consult often.'),
+('3', 'Cheerful Package', '12 times in 4 months', 924000, 'We are ready to provide your long journey with best counselling sessions. ');
 
 -- --------------------------------------------------------
 

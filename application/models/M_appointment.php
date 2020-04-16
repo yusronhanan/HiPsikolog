@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_appointment extends CI_Model {
 /*
-Handle anything about appointment (Counseling Transactions)
+Handle anything about appointment (Counseling Transactions) and Counselling Package
 
 Appointment Status : requested, accepted, cancelled, or done.
 */
@@ -88,6 +88,10 @@ Appointment Status : requested, accepted, cancelled, or done.
         return $this->db->where($where)
                         ->get('appointment')
                         ->result();
+    }
+
+    public function get_AllCounselling(){
+        return $this->db->get('counsellingpackage')->result();
     }
 
     public function randomString_appointmentID()

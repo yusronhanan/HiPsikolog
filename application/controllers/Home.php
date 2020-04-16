@@ -15,9 +15,11 @@ class Home extends CI_Controller {
       {
         parent::__construct();
         //load_model
-        $this->load->model('M_auth');
-        $this->load->library('session');
-        $this->load->helper(array('form', 'url'));
+        $this->load->model('M_psy');
+        $this->load->model('M_appointment');
+        $this->load->model('M_admin');
+        $this->load->model('M_client');
+
       }
 
       /* START No need to login Pages */
@@ -92,8 +94,11 @@ class Home extends CI_Controller {
         Display counselling package price and can directly doing request an appointment
         "Request an appointment" view will be included in this view, using modal, 
         then it will redirect to psychologistAppointment() to choose the psychologist for the appointment */
-
+        $data["main_view"] = "v_counselling";
+        $data['title'] = 'Counselling';
         
+        $data['counsellingpackage'] = $this->M_appointment->get_AllCounselling();
+        $this->load->view('v_layout', $data);
       }
       
       public function psychologistAppointment() 
