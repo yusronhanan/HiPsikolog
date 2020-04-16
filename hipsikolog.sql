@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2020 at 03:30 PM
+-- Generation Time: Apr 16, 2020 at 05:19 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -132,44 +132,45 @@ CREATE TABLE `psy` (
   `psyEmail` text NOT NULL,
   `psyPassword` text NOT NULL,
   `psyPhoneNumber` varchar(30) NOT NULL,
-  `psyPhoto` text NOT NULL
+  `psyPhoto` text NOT NULL,
+  `psyDesc` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `psy`
 --
 
-INSERT INTO `psy` (`psyID`, `psyName`, `psyEmail`, `psyPassword`, `psyPhoneNumber`, `psyPhoto`) VALUES
-('argaEdnjWs', 'dr.Ganjar, S.Psi', 'ganjar@gmail.com', '11111111', '089456137544', 'psi9.jpg'),
-('bopsmcAQSF', 'dr.Salman, S.Psi', 'salman@gmail.com', '01588888', '081322546522', 'psi24.jpg'),
-('cmnjuSdoqA', 'dr.Sinta, S.Psi', 'sinta@gmail.com', '14714714', '081472583698', 'psi19.jpg'),
-('CVBDSajdwo', 'dr.Dhiya, S.Psi', 'dhiya@gmail.com', '12456545', '089546357855', 'psi30.com'),
-('dofGGhlith', 'dr.Heru, S.Psi', 'heru@gmail.com', '55555555', '081346995728', 'psi5.jpg'),
-('Drrghghjga', 'dr.Vina, S.Psi', 'vina@gmail.com', '25648894', '084629785344', 'psi14.jpg'),
-('fdsaERTYnk', 'dr.Karina, S.Psi', 'karina@gmail.com', '12431243', '089465723315', 'psi18.com'),
-('Fgcdfrtjk', 'dr.Romi, S.Psi', 'romi@gmail.com', '45764576', '084615349575', 'psi17.jpg'),
-('ghiidQfrth', 'dr.Cindy, S.Psi', 'cindy@gmail.com', '22222222', '089461257644', 'psi11.jpg'),
-('hidjaksSCV', 'dr.Naufal, S.Psi', 'naufal@gmail.com', '45621879', '081546759462', 'psi23.jpg'),
-('HksjdollqF', 'dr.Anna, S.Psi', 'anna@gmail.com', '56423887', '089461257988', 'psi12.jpg'),
-('ImkoWesdGh', 'dr.Gani, S.Psi', 'gani@gmail.com', '45221756', '089463152477', 'psi15.jpg'),
-('JkijdsDFsa', 'dr.Najmi, S.Psi', 'najmi@gmail.com', '45798457', '081355664975', 'psi29.jpg'),
-('jskjdbMshf', 'dr.Rudi, S.Psi', 'rudi@gmail.com', '78945612', '087943156321', 'psi1.jpg'),
-('klopDDrhna', 'dr.Kora, S.Psi', 'kora@gmail.com', '45612300', '089436157244', 'psi13.jpg'),
-('mhjkSdfgWp', 'dr.Zainal, S.Psi', 'zainal@gmail.com', '36985201', '083369874123', 'psi20.jpg'),
-('mnbvXDSckz', 'dr.Anisa, S.Psi', 'anisa@gmail.com', '25252525', '089566475312', 'psi28.jpg'),
-('Nmdoiswnml', 'dr.Sian, S.Psi', 'sian@gmail.com', '25648975', '089431526744', 'psi16.jpg'),
-('nmkjlsDFvc', 'dr.Jamal, S.Psi', 'jamal@gmail.com', '12455555', '081395786555', 'psi25.jpg'),
-('nsmdiqWERdj', 'dr.Guntur, S.Psi', 'guntur@gmail.com', '45678957', '087594315988', 'psi4.jpg'),
-('pcdSSWFcna', 'dr.Naomi, S.Psi', 'naomi@gmail.com', '56545654', '089531447562', 'psi27.jpg'),
-('PKoputeAsCV', 'dr.Bangkit, S.Psi', 'bangkit@gmail.com', '02587531', '081379468250', 'psi22.jpg'),
-('qiergDrenF', 'dr.Dono, S.Psi', 'dono@gmail.com', '99999999', '087599643178', 'psi7.jpg'),
-('qwErtYuioP', 'dr.Vania, S.Psi', 'vania@gmail.com', '78787878', '084315967315', 'psi10.jpg'),
-('rewRwjqegD', 'dr.Gildarts, S.Psi', 'gildarts@gmail.com', '54545454', '081344475627', 'psi8.jpg'),
-('roiSwfdAfg', 'dr.Wanda, S.Psi', 'wanda@gmail.com', '22224444', '084635127955', 'psi26.jpg'),
-('skjdnFgrop', 'dr.Jamal, S.Psi', 'jamal@gmail.com', '56431598', '084613759424', 'psi2.jpg'),
-('sndowignDF', 'dr.Kamal, S.Psi', 'kamal@gmail.com', '15648795', '084315967222', 'psi3.jpg'),
-('vbgHpklDhk', 'dr.Deru, S.Psi', 'deru@gmail.com', '66666666', '081355976244', 'psi6.jpg'),
-('zxcvAWERtg', 'dr.Dilan, S.Psi', 'dilan@gmail.com', '15698742', '089512357460', 'psi21.jpg');
+INSERT INTO `psy` (`psyID`, `psyName`, `psyEmail`, `psyPassword`, `psyPhoneNumber`, `psyPhoto`, `psyDesc`) VALUES
+('argaEdnjWs', 'dr.Ganjar, S.Psi', 'ganjar@gmail.com', '11111111', '089456137544', 'psi9.jpg', 'Love Life Specialist'),
+('bopsmcAQSF', 'dr.Salman, S.Psi', 'salman@gmail.com', '01588888', '081322546522', 'psi24.jpg', 'Love Life Specialist'),
+('cmnjuSdoqA', 'dr.Sinta, S.Psi', 'sinta@gmail.com', '14714714', '081472583698', 'psi19.jpg', 'Love Life Specialist'),
+('CVBDSajdwo', 'dr.Dhiya, S.Psi', 'dhiya@gmail.com', '12456545', '089546357855', 'psi30.com', 'Love Life Specialist'),
+('dofGGhlith', 'dr.Heru, S.Psi', 'heru@gmail.com', '55555555', '081346995728', 'psi5.jpg', 'Love Life Specialist'),
+('Drrghghjga', 'dr.Vina, S.Psi', 'vina@gmail.com', '25648894', '084629785344', 'psi14.jpg', 'Love Life Specialist'),
+('fdsaERTYnk', 'dr.Karina, S.Psi', 'karina@gmail.com', '12431243', '089465723315', 'psi18.com', 'Love Life Specialist'),
+('Fgcdfrtjk', 'dr.Romi, S.Psi', 'romi@gmail.com', '45764576', '084615349575', 'psi17.jpg', 'Love Life Specialist'),
+('ghiidQfrth', 'dr.Cindy, S.Psi', 'cindy@gmail.com', '22222222', '089461257644', 'psi11.jpg', 'Love Life Specialist'),
+('hidjaksSCV', 'dr.Naufal, S.Psi', 'naufal@gmail.com', '45621879', '081546759462', 'psi23.jpg', 'Love Life Specialist'),
+('HksjdollqF', 'dr.Anna, S.Psi', 'anna@gmail.com', '56423887', '089461257988', 'psi12.jpg', 'Love Life Specialist'),
+('ImkoWesdGh', 'dr.Gani, S.Psi', 'gani@gmail.com', '45221756', '089463152477', 'psi15.jpg', 'Love Life Specialist'),
+('JkijdsDFsa', 'dr.Najmi, S.Psi', 'najmi@gmail.com', '45798457', '081355664975', 'psi29.jpg', 'Love Life Specialist'),
+('jskjdbMshf', 'dr.Rudi, S.Psi', 'rudi@gmail.com', '78945612', '087943156321', 'psi1.jpg', 'Love Life Specialist'),
+('klopDDrhna', 'dr.Kora, S.Psi', 'kora@gmail.com', '45612300', '089436157244', 'psi13.jpg', 'Love Life Specialist'),
+('mhjkSdfgWp', 'dr.Zainal, S.Psi', 'zainal@gmail.com', '36985201', '083369874123', 'psi20.jpg', 'Love Life Specialist'),
+('mnbvXDSckz', 'dr.Anisa, S.Psi', 'anisa@gmail.com', '25252525', '089566475312', 'psi28.jpg', 'Love Life Specialist'),
+('Nmdoiswnml', 'dr.Sian, S.Psi', 'sian@gmail.com', '25648975', '089431526744', 'psi16.jpg', 'Love Life Specialist'),
+('nmkjlsDFvc', 'dr.Jamal, S.Psi', 'jamal@gmail.com', '12455555', '081395786555', 'psi25.jpg', 'Love Life Specialist'),
+('nsmdiqWERdj', 'dr.Guntur, S.Psi', 'guntur@gmail.com', '45678957', '087594315988', 'psi4.jpg', 'Love Life Specialist'),
+('pcdSSWFcna', 'dr.Naomi, S.Psi', 'naomi@gmail.com', '56545654', '089531447562', 'psi27.jpg', 'Love Life Specialist'),
+('PKoputeAsCV', 'dr.Bangkit, S.Psi', 'bangkit@gmail.com', '02587531', '081379468250', 'psi22.jpg', 'Love Life Specialist'),
+('qiergDrenF', 'dr.Dono, S.Psi', 'dono@gmail.com', '99999999', '087599643178', 'psi7.jpg', 'Love Life Specialist'),
+('qwErtYuioP', 'dr.Vania, S.Psi', 'vania@gmail.com', '78787878', '084315967315', 'psi10.jpg', 'Love Life Specialist'),
+('rewRwjqegD', 'dr.Gildarts, S.Psi', 'gildarts@gmail.com', '54545454', '081344475627', 'psi8.jpg', 'Love Life Specialist'),
+('roiSwfdAfg', 'dr.Wanda, S.Psi', 'wanda@gmail.com', '22224444', '084635127955', 'psi26.jpg', 'Love Life Specialist'),
+('skjdnFgrop', 'dr.Jamal, S.Psi', 'jamal@gmail.com', '56431598', '084613759424', 'psi2.jpg', 'Love Life Specialist'),
+('sndowignDF', 'dr.Kamal, S.Psi', 'kamal@gmail.com', '15648795', '084315967222', 'psi3.jpg', 'Love Life Specialist'),
+('vbgHpklDhk', 'dr.Deru, S.Psi', 'deru@gmail.com', '66666666', '081355976244', 'psi6.jpg', 'Love Life Specialist'),
+('zxcvAWERtg', 'dr.Dilan, S.Psi', 'dilan@gmail.com', '15698742', '089512357460', 'psi21.jpg', 'Love Life Specialist');
 
 --
 -- Indexes for dumped tables
