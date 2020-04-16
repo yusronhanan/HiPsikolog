@@ -17,7 +17,7 @@
 				<div class="col-12">
 					<nav class="navbar navbar-expand-md navbar-light">
 					
-						<a class="navbar-brand" href="<?= base_url() ?>" target="_blank">
+						<a class="navbar-brand" href="<?= base_url() ?>">
                         <img src="<?= base_url() ?>assets/img/logoHi.png" width="1000px" alt=""></a>	
 						
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
     
     <?php $this->load->view($main_view); ?>
   
-<div class="mini-footer">
+<div class="mini-footer footer">
     <div class="container">
       <div class="row">
         <div class="col-md-12">

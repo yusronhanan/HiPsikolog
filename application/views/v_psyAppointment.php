@@ -11,7 +11,7 @@
             <p><small><?= $pa->psyDesc?></small></p>
           </div>
           <div class="image-parent">
-              <img src="<?= base_url().'assets/img/'.$pa->psyPhoto?>" class="img-fluid" alt="foto psikolognya">
+              <img src="<?= base_url().'assets/img/'.$pa->psyPhoto?>" class="img-fluid" alt="<?= $pa->psyName?>">
           </div>
         </a>
         </a> 

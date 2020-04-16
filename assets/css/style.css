@@ -75,8 +75,14 @@
 	color:#5867dd
    }
    .mini-footer p a:hover {
-	color:#34bfa3
+	color:hsl(168, 57%, 48%)
    }
+
+   .footer {
+	left: 0;
+	bottom: 0;
+	width: 100%;
+  }
 /* Carousel */
 
 .carousel-item {

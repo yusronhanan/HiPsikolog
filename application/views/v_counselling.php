@@ -45,7 +45,7 @@
           <?= $cp->counsellingDuration ?>
           only <?= 'Rp ' . number_format($cp->counsellingPrice);  ?>
           </p>
-          <a href="#" class="btn btn-outline-primary">Continue Counselling</a>
+          <a href="<?= site_url('home/psychologistAppointment') ?>" class="btn btn-outline-primary">Continue Counselling</a>
         </div>
       </div>
     </div>
