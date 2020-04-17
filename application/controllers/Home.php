@@ -71,17 +71,48 @@ class Home extends CI_Controller {
         
       }
 
-      public function psychologistlist()
+      public function addPsychologist($id)
       {
         /* Add and Edit will be included in this view, using modal */
 
         
       }
 
-      public function clientlist()
+      public function editPsychologist($id)
+      {
+        /* Add and Edit will be included in this view, using modal */
+
+        
+      }
+
+      public function deletePsychologist($id)
+      {
+        /* Add and Edit will be included in this view, using modal */
+
+        
+      }
+
+      public function client()
+	    {
+        $data = array(
+          'data_client' => $this->M_client->get_AllClient(),
+          'main_view' => 'v_clientList',
+          'title' => 'Client Data'
+        );
+		    $this->load->view('v_layout',$data);
+	    }
+
+      public function editClient($id)
       {
         /* Add and Edit will be included in this view, using modal */
         
+      }
+
+      public function deleteClient($id)
+      {
+        /* Add and Edit will be included in this view, using modal */
+        $this->M_client->delete_client($id);
+		    redirect('index.php/web/mahasiswa');
       }
 
       /* END Admin Pages (Need Login)*/

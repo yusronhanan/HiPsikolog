@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css">
+	<link rel="stylesheet" href="<?= base_url() ?>assets/css/jquery.dataTables.css">
+	<link rel="stylesheet" href="<?= base_url() ?>assets/fontawesome/css/all.css">
 
 </head>
 <body>
@@ -92,6 +94,11 @@
 <script src="<?= base_url() ?>assets/js/popper.min.js"></script>
 <script src="<?= base_url() ?>assets/js/bootstrap.min.js"></script>
 <script src="<?= base_url() ?>assets/js/style.js"></script>
-
+<script src="<?= base_url() ?>assets/js/jquery.dataTables.js"></script>
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#table').DataTable();
+} );
+</script>
 </body>
 </html>

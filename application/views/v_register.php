@@ -1,6 +1,3 @@
-<header>
-
-</header>
 <section class="py-5">
   <div class="container col-lg-6 main-div">
   <center>
