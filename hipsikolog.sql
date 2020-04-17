@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2020 at 05:19 PM
+-- Generation Time: Apr 17, 2020 at 04:50 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -48,6 +48,18 @@ INSERT INTO `admin` (`adminID`, `adminName`, `adminEmail`, `adminPassword`) VALU
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `appointment`
+--
+
+CREATE TABLE `appointment` (
+  `appointmentID` varchar(10) NOT NULL,
+  `psyID` varchar(10) NOT NULL,
+  `clientID` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `client`
 --
 
@@ -65,7 +77,7 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`clientID`, `clientName`, `clientEmail`, `clientPassword`, `clientPhoneNumber`, `clientPhoto`) VALUES
-('amoeTYSQop', 'Fani', 'fani@gmail.com', '28947624', '081967354956', 'client6.jpg'),
+('amoeTYSQop', 'Fani', 'fani@gmail.com', '28947624', '081967354956', '_'),
 ('bnmcdrWEDH', 'Anggi', 'anggi@gmail.com', '55564937', '081564729543', 'client21.jpg'),
 ('Cndjsnowdf', 'Stuward', 'stuward@gmail.com', '66666666', '089461245555', 'client27.jpg'),
 ('cnsmjfyWvS', 'Budi', 'budi@gmail.com', '84848484', '084445559075', 'client1.jpg'),
@@ -141,7 +153,7 @@ CREATE TABLE `psy` (
 --
 
 INSERT INTO `psy` (`psyID`, `psyName`, `psyEmail`, `psyPassword`, `psyPhoneNumber`, `psyPhoto`, `psyDesc`) VALUES
-('argaEdnjWs', 'dr.Ganjar, S.Psi', 'ganjar@gmail.com', '11111111', '089456137544', 'psi9.jpg', 'Love Life Specialist'),
+('argaEdnjWs', 'dr.Ganjar, S.Psi', 'ganjar@gmail.com', '11111111', '089456137544', '_', 'Love Life Specialist'),
 ('bopsmcAQSF', 'dr.Salman, S.Psi', 'salman@gmail.com', '01588888', '081322546522', 'psi24.jpg', 'Love Life Specialist'),
 ('cmnjuSdoqA', 'dr.Sinta, S.Psi', 'sinta@gmail.com', '14714714', '081472583698', 'psi19.jpg', 'Love Life Specialist'),
 ('CVBDSajdwo', 'dr.Dhiya, S.Psi', 'dhiya@gmail.com', '12456545', '089546357855', 'psi30.com', 'Love Life Specialist'),
@@ -183,6 +195,14 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`adminID`);
 
 --
+-- Indexes for table `appointment`
+--
+ALTER TABLE `appointment`
+  ADD PRIMARY KEY (`appointmentID`),
+  ADD KEY `psyID` (`psyID`),
+  ADD KEY `clientID` (`clientID`);
+
+--
 -- Indexes for table `client`
 --
 ALTER TABLE `client`
@@ -199,6 +219,17 @@ ALTER TABLE `counsellingpackage`
 --
 ALTER TABLE `psy`
   ADD PRIMARY KEY (`psyID`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `appointment`
+--
+ALTER TABLE `appointment`
+  ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`psyID`) REFERENCES `psy` (`psyID`),
+  ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`clientID`) REFERENCES `client` (`clientID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
