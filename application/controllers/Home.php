@@ -71,10 +71,13 @@ class Home extends CI_Controller {
         /* Add and Edit will be included in this view, using modal */
         $data = array(
           'data_appointment' => $this->M_appointment->get_AllAppointment(),
+          'data_psy' => $this->M_psy->get_AllPsy(),
+          'data_client' => $this->M_client->get_AllClient(),
+          'data_package' => $this->M_appointment->get_AllCounselling(),
           'main_view' => 'v_appointmentList',
           'title' => 'Appointment Data'
         );
-		    $this->load->view('v_layout',$data);
+        $this->load->view('v_layout',$data);
       }
 
       public function psychologistlist()

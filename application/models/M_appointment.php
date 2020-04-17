@@ -69,7 +69,9 @@ Appointment Status : requested, accepted, cancelled, or done.
     }
     
     public function get_AllAppointment(){
-        return $this->db->get('appointment')->result();
+       
+        return  $this->db->query("SELECT appointmentID,clientName,psyName,counsellingName,date,time,status FROM appointment natural join client natural join psy natural join counsellingpackage")->result();
+        
     }
 
     public function get_AllAppointment_limit($limit,$start){
