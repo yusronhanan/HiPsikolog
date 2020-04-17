@@ -14,6 +14,7 @@ Handle anything about pyschologist
             'psyEmail' => $this->input->post('psyEmail'),
             'psyPassword' => $this->input->post('psyPassword'),
             'psyPhoneNumber' => $this->input->post('psyPhoneNumber'),
+            'psyDesc' => $this->input->post('psyDesc'),
             'psyPhoto' => $photo['file_name']
         );
 
@@ -26,8 +27,10 @@ Handle anything about pyschologist
             'psyName' => $this->input->post('psyName'),
             'psyEmail' => $this->input->post('psyEmail'),
             'psyPassword' => $this->input->post('psyPassword'),
-            'psyPhoneNumber' => $this->input->post('psyPhoneNumber')
+            'psyPhoneNumber' => $this->input->post('psyPhoneNumber'),
+            'psyDesc' => $this->input->post('psyDesc')
         );
+        
         if(!empty($photo)){
             $data['psyPhoto'] = $photo['file_name'];
         }
