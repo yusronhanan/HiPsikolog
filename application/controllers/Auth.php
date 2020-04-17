@@ -75,7 +75,7 @@ class Auth extends CI_Controller {
                 $password = $this->input->post('clientPassword');
                 $repass = $this->input->post('re-password');
               
-                if ($password == $repass) {
+              if ($password == $repass) {
                 if (!$this->M_auth->check_email_client($email)){
                   $initialize = $this->upload->initialize(array(
                     'upload_path' => './assets/img/',

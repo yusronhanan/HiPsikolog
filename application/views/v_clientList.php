@@ -32,7 +32,7 @@
 </div>
 <br/>
 
-<!-- Modal Client Edit -->
+<!-- Modal Edit Client -->
 
 <?php $no=1; foreach ($data_client as $d ) {?>
   <div class="modal fade" id="edit<?php echo $d->clientID ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -70,3 +70,5 @@
     </div>
   </div>
 <?php } ?>
+
+

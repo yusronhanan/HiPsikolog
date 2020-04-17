@@ -18,6 +18,7 @@ class Home extends CI_Controller {
         $this->load->model('M_psy');
         $this->load->model('M_appointment');
         $this->load->model('M_admin');
+        $this->load->model('M_auth');
         $this->load->model('M_client');
 
       }
@@ -65,34 +66,85 @@ class Home extends CI_Controller {
 
       /* START Admin Pages (Need Login)*/
 
-      public function appointmentlist()
+      public function appointmentList()
       {
         /* Add and Edit will be included in this view, using modal */
+        $data = array(
+          'data_appointment' => $this->M_appointment->get_AllAppointment(),
+          'main_view' => 'v_appointmentList',
+          'title' => 'Appointment Data'
+        );
+		    $this->load->view('v_layout',$data);
+      }
+
+      public function psychologistlist()
+      {
+        /* Add and Edit will be included in this view, using modal */
+        $data = array(
+          'data_psy' => $this->M_psy->get_AllPsy(),
+          'main_view' => 'v_psyList',
+          'title' => 'Psychologist Data'
+        );
+		    $this->load->view('v_layout',$data);
+      }
+
+      public function addPsychologist()
+      {
+        /* Add and Edit will be included in this view, using modal */
+      $this->form_validation->set_rules('psyName', 'Name', 'required');
+      $this->form_validation->set_rules('psyEmail', 'Email', 'required');
+      $this->form_validation->set_rules('psyPassword', 'Password', 'required');
+      $this->form_validation->set_rules('psyPhoneNumber', 'Phone Number', 'required');
+
+      
+      if ($this->form_validation->run() == TRUE) {
+                $email = $this->input->post('psyEmail');
+
+                if (!$this->M_auth->check_email_psy($email)){
+                  $initialize = $this->upload->initialize(array(
+                    'upload_path' => './assets/img/',
+                    'allowed_types' => 'gif|jpg|jpeg|png'
+                  ));
+                  if($this->upload->do_upload('uploadImage')){
+                    $photo = $this->upload->data();
+                    if ($this->M_psy->add_psy($photo)) {
+                      redirect('/home/psychologistList'); /* need to modified */
+                    } else {
+                      $this->session->set_flashdata('notif', 'Failed to add account');
+                      redirect('/home/psychologistList'); /* need to modified */
+                    
+                    }
+                  } else {
+                    $this->session->set_flashdata('notif', 'Failed to upload image');
+                    redirect('/home/psychologistList'); /* need to modified */
+                  }
+                } else {
+                  $this->session->set_flashdata('notif', 'Email already exist');
+                  redirect('/home/psychologistList'); /* need to modified */
+                }
+      } else {
+              $this->session->set_flashdata('notif', 'One of required input is empty');
+              redirect('/home/psychologistList'); /* need to modified */
+      }
         
       }
 
-      public function addPsychologist($id)
+      public function editPsychologist()
       {
-        /* Add and Edit will be included in this view, using modal */
-
-        
-      }
-
-      public function editPsychologist($id)
-      {
-        /* Add and Edit will be included in this view, using modal */
-
-        
+        /* Add and Edit will be included in this view, using modal */    
+        $id = $this->input->post('psyID');
+        $this->M_psy->edit_psy($id,_);
+		    redirect('home/psychologistList');
       }
 
       public function deletePsychologist($id)
       {
         /* Add and Edit will be included in this view, using modal */
-
-        
+        $this->M_psy->delete_psy($id);
+		    redirect('home/psychologistList');
       }
 
-      public function client()
+      public function clientList()
 	    {
         $data = array(
           'data_client' => $this->M_client->get_AllClient(),
@@ -102,17 +154,19 @@ class Home extends CI_Controller {
 		    $this->load->view('v_layout',$data);
 	    }
 
-      public function editClient($id)
+      public function editClient()
       {
         /* Add and Edit will be included in this view, using modal */
-        
+        $id = $this->input->post('clientID');
+        $this->M_client->edit_client($id,_);
+		    redirect('home/clientList');
       }
 
       public function deleteClient($id)
       {
         /* Add and Edit will be included in this view, using modal */
         $this->M_client->delete_client($id);
-		    redirect('index.php/web/mahasiswa');
+		    redirect('home/clientList');
       }
 
       /* END Admin Pages (Need Login)*/
