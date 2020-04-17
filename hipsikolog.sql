@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2020 at 04:50 PM
+-- Generation Time: Apr 17, 2020 at 08:03 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -53,9 +53,20 @@ INSERT INTO `admin` (`adminID`, `adminName`, `adminEmail`, `adminPassword`) VALU
 
 CREATE TABLE `appointment` (
   `appointmentID` varchar(10) NOT NULL,
+  `counsellingID` varchar(10) NOT NULL,
+  `clientID` varchar(10) NOT NULL,
   `psyID` varchar(10) NOT NULL,
-  `clientID` varchar(10) NOT NULL
+  `date` date DEFAULT NULL,
+  `time` varchar(20) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`appointmentID`, `counsellingID`, `clientID`, `psyID`, `date`, `time`, `status`) VALUES
+('fiRSTfirst', '1', 'Cndjsnowdf', 'ghiidQfrth', '2020-04-01', '30 Minutes', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -199,8 +210,9 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `appointment`
   ADD PRIMARY KEY (`appointmentID`),
-  ADD KEY `psyID` (`psyID`),
-  ADD KEY `clientID` (`clientID`);
+  ADD KEY `counsellingID` (`counsellingID`),
+  ADD KEY `clientID` (`clientID`),
+  ADD KEY `psyID` (`psyID`);
 
 --
 -- Indexes for table `client`
@@ -228,8 +240,9 @@ ALTER TABLE `psy`
 -- Constraints for table `appointment`
 --
 ALTER TABLE `appointment`
-  ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`psyID`) REFERENCES `psy` (`psyID`),
-  ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`clientID`) REFERENCES `client` (`clientID`);
+  ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`counsellingID`) REFERENCES `counsellingpackage` (`counsellingID`),
+  ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`clientID`) REFERENCES `client` (`clientID`),
+  ADD CONSTRAINT `appointment_ibfk_3` FOREIGN KEY (`psyID`) REFERENCES `psy` (`psyID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
