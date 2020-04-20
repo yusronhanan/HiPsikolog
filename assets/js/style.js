@@ -1,3 +1,5 @@
+
+
 // Card Counselling
 $(document).ready(function() {
     var front = document.getElementsByClassName("front");

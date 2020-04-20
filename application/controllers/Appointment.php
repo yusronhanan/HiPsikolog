@@ -14,13 +14,35 @@ class Appointment extends CI_Controller {
         $this->load->model('M_psy');
         $this->load->model('M_appointment');
     }
-    public function index()
+    
+    public function requestAppointment()
     {
-        
-    }
+      $this->form_validation->set_rules('psyID', 'Psychologist', 'required');
+      $this->form_validation->set_rules('counsellingID', 'Counselling Package', 'required');
+      $this->form_validation->set_rules('time', 'Time', 'required');
+      $this->form_validation->set_rules('date', 'Date', 'required');
 
+
+      
+      if ($this->form_validation->run() == TRUE) {
+                
+                    if ($this->M_appointment->request_appointment()) {
+                      $this->session->set_flashdata('type', 'success');
+                      $this->session->set_flashdata('notif', 'Success request appointment');
+                      redirect('/home/counselling'); /* need to modified */
+                    
+                    } else {
+                      $this->session->set_flashdata('notif', 'Failed to request appointment');
+                      redirect('/home/counselling'); /* need to modified */
+                    }
+      } else {
+              $this->session->set_flashdata('notif', 'One of required input is empty');
+              redirect('/home/clientList'); /* need to modified */
+      }
+    }
     public function addAppointment()
     {
+      /* by admin*/
       $this->form_validation->set_rules('clientID', 'Client Name', 'required');
       $this->form_validation->set_rules('psyID', 'Psychologist Name', 'required');
       $this->form_validation->set_rules('counsellingID', 'Package Name', 'required');

@@ -103,6 +103,7 @@
 <script src="<?= base_url() ?>assets/js/bootstrap.min.js"></script>
 <script src="<?= base_url() ?>assets/js/style.js"></script>
 <script src="<?= base_url() ?>assets/js/jquery.dataTables.js"></script>
+
 <script type="text/javascript">
   $(document).ready( function () {
     $('#table').DataTable();

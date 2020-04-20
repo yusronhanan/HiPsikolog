@@ -45,13 +45,13 @@ Handle anything about appointment (Counseling Transactions) and Counselling Pack
     
     public function request_appointment(){
         $data = array(
-            'appointmentID' => randomString_appointmentID(),
+            'appointmentID' => $this->randomString_appointmentID(),
             'counsellingID' => $this->input->post('counsellingID'),
-            'clientID' => $this->input->post('clientID'),
+            'clientID' => $this->session->userdata('id'),
             'psyID' => $this->input->post('psyID'),
             'date' => $this->input->post('date'), //need to take care of, because the type is date
             'time' => $this->input->post('time'),
-            'status' => 'requested'
+            'status' => $this->getStatusList()[0]
         );
 
         $this->db->insert('appointment', $data);
@@ -110,7 +110,7 @@ Handle anything about appointment (Counseling Transactions) and Counselling Pack
         return ["08:00", "09:00", "10:00", "11:00", "13:00", "14:00", "15:00"];
     }
     public function getStatusList(){
-        return ["Pending", "Accepted", "In Session", "Completed", "Decline", "Cancelled"];
+        return ["Requested", "Accepted", "In Session", "Completed", "Decline", "Cancelled"];
     }
 }
 

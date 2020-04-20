@@ -157,15 +157,21 @@ class Home extends CI_Controller {
         $this->load->view('v_layout', $data);
       }
       
-      public function psychologistAppointment() 
+      public function requestAppointment() 
       {
         /* View psychologist information in List, its the pages to choose the psychologist for the appointment
         "Psychologist information in detail" will be included in this view, using modal */
         if (!$this->session->userdata('logged_in')) { 
           redirect('/home/login');
         } else{
-          $data['title'] = 'Psychologist Appointment';
-          $data['main_view'] = 'v_psyAppointment';
+          // $hour = date('H:i:s');
+          // $data['hour'] = $hour;
+          $data['pkg'] = $this->uri->segment(3);
+
+          $data['data_package'] = $this->M_appointment->get_AllCounselling();
+          $data['arrTime'] =$this->M_appointment->getTimeList();
+          $data['title'] = 'Request Appointment';
+          $data['main_view'] = 'v_requestAppointment';
           $data['psyAppointment'] = $this->M_psy->get_AllPsy();
 			    $this->load->view('v_layout', $data);
         }
