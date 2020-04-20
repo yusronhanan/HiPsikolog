@@ -47,6 +47,10 @@ class Auth extends CI_Controller {
                   'logged_in' => true /* logged in means, the user success logged_in = true */
                 );
                 $this->session->set_userdata($session_data);
+                $this->session->set_flashdata('type', 'success');
+              
+              $this->session->set_flashdata('notif', 'Login success');
+
                 redirect('/home');
         } else {
               $this->session->set_flashdata('notif', 'Invalid Username or Password');
@@ -86,12 +90,15 @@ class Auth extends CI_Controller {
                     if ($this->M_auth->register($photo)) {
 
                       $session_data = array(
-                        'id' => $this->M_client->get_Client_ByEmail($client_email)->clientID,
+                        'id' => $this->M_client->get_Client_ByEmail($email)->clientID,
                         'name' => $this->input->post('clientName'),
                         'role' => 'client',
                         'logged_in' => true /* logged in means, the user success logged_in = true */
                       );
                       $this->session->set_userdata($session_data);
+                      $this->session->set_flashdata('type', 'success');
+              
+                      $this->session->set_flashdata('notif', 'Register success');
                       redirect('/home'); /* need to modified */
                     
                     } else {

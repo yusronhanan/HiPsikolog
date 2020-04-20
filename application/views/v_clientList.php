@@ -2,11 +2,7 @@
     <div class="box main-div">
       <h2>CLIENT DATA</h2>
       <p>Data Table HiPsikolog</p> 
-      <?php if(!empty($this->session->flashdata('notif'))) { ?>
-	    <div class="alert alert-<?php if(!empty($this->session->flashdata('type'))) { echo $this->session->flashdata('type');} else{ echo 'danger';} ?>" role="alert">
-		    <?= $this->session->flashdata('notif'); ?>
-	    </div>
-	    <?php } ?>             
+    
       <table class="table table-bordered" id="table">
         <thead>
           <tr>

@@ -3,11 +3,7 @@
   <center>
     <form action="<?= site_url('auth/login') ?>" method="post">
 		<h2>Login</h2>
-		<?php if(!empty($this->session->flashdata('notif'))) { ?>
-	    <div class="alert alert-danger" role="alert">
-		    <?= $this->session->flashdata('notif'); ?>
-	    </div>
-	    <?php } ?>
+		
 	    <div class="form-group">
 		    <input type="text" class="form-control" name="email" placeholder="E-mail" required>
 	    </div>

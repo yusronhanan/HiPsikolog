@@ -2,11 +2,7 @@
     <div class="box main-div">
       <h2>PSYCHOLOGIST DATA</h2>
       <p>Data Table HiPsikolog</p>
-      <?php if(!empty($this->session->flashdata('notif'))) { ?>
-	    <div class="alert alert-<?php if(!empty($this->session->flashdata('type'))) { echo $this->session->flashdata('type');} else{ echo 'danger';} ?>" role="alert">
-		    <?= $this->session->flashdata('notif'); ?>
-	    </div>
-	    <?php } ?>            
+          
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addpsy">Add Psychologist</button>
       <br><br>
       <table class="table table-bordered" id="table">

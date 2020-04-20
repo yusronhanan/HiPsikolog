@@ -161,8 +161,9 @@ class Home extends CI_Controller {
       {
         /* View psychologist information in List, its the pages to choose the psychologist for the appointment
         "Psychologist information in detail" will be included in this view, using modal */
-        if (!$this->session->userdata('logged_in')) { 
-          redirect('/home/login');
+        if ($this->session->userdata('role') != "client") { 
+          $this->session->set_flashdata('notif', "You can't access this page");
+          redirect('/home');
         } else{
           // $hour = date('H:i:s');
           // $data['hour'] = $hour;

@@ -3,11 +3,7 @@
   <center>
     <form action="<?= site_url('auth/register') ?>" method="post" enctype="multipart/form-data">
 		<h2>Register</h2>
-	    <?php if(!empty($this->session->flashdata('notif'))) { ?>
-	    <div class="alert alert-danger" role="alert">
-		    <?= $this->session->flashdata('notif'); ?>
-	    </div>
-	    <?php } ?>
+	    
 	    <div class="form-group">
 		    <input type="text" class="form-control" name="clientName" placeholder="Name" required>
 	    </div>

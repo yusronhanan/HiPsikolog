@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/jquery.dataTables.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/fontawesome/css/all.css">
+	<link rel="stylesheet" href="<?= base_url() ?>assets/sweetalert/sweetalert2.min.css">
 
 </head>
 <body>
@@ -103,11 +104,34 @@
 <script src="<?= base_url() ?>assets/js/bootstrap.min.js"></script>
 <script src="<?= base_url() ?>assets/js/style.js"></script>
 <script src="<?= base_url() ?>assets/js/jquery.dataTables.js"></script>
+<script src="<?= base_url() ?>assets/sweetalert/sweetalert2.min.js"></script>
+
 
 <script type="text/javascript">
   $(document).ready( function () {
-    $('#table').DataTable();
-} );
+	$('#table').DataTable();
+});
+
+function notifAlert(notif,type){
+	if(notif != ""){
+		Swal.fire({
+		icon: type,
+		// title: 'Oops...',
+		text: notif,
+		//   footer: '<a href>Why do I have this issue?</a>'
+		});
+	}
+}
 </script>
+<?php if(!empty($this->session->flashdata('notif'))) { 
+			if(empty($this->session->flashdata('type'))){
+				$type = "error";
+			} else{
+				$type = $this->session->flashdata('type');
+			}?>
+	<script>
+	notifAlert("<?= $this->session->flashdata('notif'); ?>","<?= $type ?>");
+	</script>
+<?php } ?>
 </body>
 </html>
