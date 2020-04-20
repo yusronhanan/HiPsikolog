@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2020 at 07:36 AM
+-- Generation Time: Apr 20, 2020 at 04:29 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -48,6 +48,33 @@ INSERT INTO `admin` (`adminID`, `adminName`, `adminEmail`, `adminPassword`) VALU
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `appointment`
+--
+
+CREATE TABLE `appointment` (
+  `appointmentID` varchar(10) NOT NULL,
+  `counsellingID` varchar(10) NOT NULL,
+  `clientID` varchar(10) NOT NULL,
+  `psyID` varchar(10) NOT NULL,
+  `date` date DEFAULT NULL,
+  `time` varchar(20) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`appointmentID`, `counsellingID`, `clientID`, `psyID`, `date`, `time`, `status`) VALUES
+('6CrA7i0vXQ', '2', 'W9PviHNSAx', 'bopsmcAQSF', '2020-04-20', '08:00', 'Requested'),
+('CxBSKWLNk7', '3', 'W9PviHNSAx', 'cmnjuSdoqA', '2020-04-20', '13:00', 'Requested'),
+('d1NaGDyknX', '3', 'bnmcdrWEDH', 'cmnjuSdoqA', '2020-04-25', '10:00', 'In Session'),
+('T8bY5pWkfL', '2', 'JjYqw8Alnt', 'ghiidQfrth', '2020-04-20', '08:00', 'Requested'),
+('Zbx3Wa6iOo', '1', 'W9PviHNSAx', 'CVBDSajdwo', '2020-04-21', '10:00', 'Requested');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `client`
 --
 
@@ -66,6 +93,7 @@ CREATE TABLE `client` (
 
 INSERT INTO `client` (`clientID`, `clientName`, `clientEmail`, `clientPassword`, `clientPhoneNumber`, `clientPhoto`) VALUES
 ('amoeTYSQop', 'Fani', 'fani@gmail.com', '28947624', '081967354956', '_'),
+('AMu4wZBrX8', 'Aqil', 'aqil@gmail.com', 'aqil', '082615161892', 'nurse.png'),
 ('bnmcdrWEDH', 'Anggi', 'anggi@gmail.com', '55564937', '081564729543', 'client21.jpg'),
 ('Cndjsnowdf', 'Stuward', 'stuward@gmail.com', '66666666', '089461245555', 'client27.jpg'),
 ('cnsmjfyWvS', 'Budi', 'budi@gmail.com', '84848484', '084445559075', 'client1.jpg'),
@@ -81,6 +109,7 @@ INSERT INTO `client` (`clientID`, `clientName`, `clientEmail`, `clientPassword`,
 ('HjksnfdeWW', 'Beni', 'beni@gmail.com', '22156644', '081300125796', 'client20.jpg'),
 ('hwiqFHjkRd', 'Heru', 'heru@gmail.com', '25588793', '0815932746228', 'client4.jpg'),
 ('IpklhgsowZ', 'Rudi', 'rudi@gmail.com', '02315964', '089643719657', 'client8.jpg'),
+('JjYqw8Alnt', 'Amirah', 'amirah@outlook.com', 'amirah', '087789110888', 'nurse_(1).png'),
 ('joerFYQbjk', 'Steve', 'steve@gmail.com', '569473351', '081497538645', 'client5.jpg'),
 ('mcidkAWDFc', 'Edo', 'edo@gmail.com', '56438512', '089435761258', 'client16.jpg'),
 ('MnkpoerCvk', 'Rendy', 'rendy@gmail.com', '15648957', '081596734286', 'client12.jpg'),
@@ -181,6 +210,15 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`adminID`);
 
 --
+-- Indexes for table `appointment`
+--
+ALTER TABLE `appointment`
+  ADD PRIMARY KEY (`appointmentID`),
+  ADD KEY `counsellingID` (`counsellingID`),
+  ADD KEY `clientID` (`clientID`),
+  ADD KEY `psyID` (`psyID`);
+
+--
 -- Indexes for table `client`
 --
 ALTER TABLE `client`
@@ -197,6 +235,18 @@ ALTER TABLE `counsellingpackage`
 --
 ALTER TABLE `psy`
   ADD PRIMARY KEY (`psyID`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `appointment`
+--
+ALTER TABLE `appointment`
+  ADD CONSTRAINT `FK_appointment_client` FOREIGN KEY (`clientID`) REFERENCES `client` (`clientID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_appointment_counselling` FOREIGN KEY (`counsellingID`) REFERENCES `counsellingpackage` (`counsellingID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_appointment_psy` FOREIGN KEY (`psyID`) REFERENCES `psy` (`psyID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
