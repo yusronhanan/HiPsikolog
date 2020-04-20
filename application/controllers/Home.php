@@ -69,37 +69,73 @@ class Home extends CI_Controller {
       public function appointmentList()
       {
         /* Add and Edit will be included in this view, using modal */
-        $data = array(
-          'data_appointment' => $this->M_appointment->get_AllAppointment(),
-          'data_psy' => $this->M_psy->get_AllPsy(),
-          'data_client' => $this->M_client->get_AllClient(),
-          'data_package' => $this->M_appointment->get_AllCounselling(),
-          'main_view' => 'v_appointmentList',
-          'title' => 'Appointment Data'
-        );
-        $this->load->view('v_layout',$data);
+        if($this->session->userdata('role') == "admin"){
+          $data = array(
+            'data_appointment' => $this->M_appointment->get_AllAppointment(),
+            'data_psy' => $this->M_psy->get_AllPsy(),
+            'data_client' => $this->M_client->get_AllClient(),
+            'data_package' => $this->M_appointment->get_AllCounselling(),
+            'main_view' => 'v_appointmentList',
+            'title' => 'Appointment Data',
+            'arrTime' =>$this->M_appointment->getTimeList(),
+            'arrStatus' =>$this->M_appointment->getStatusList()
+
+          );
+          $this->load->view('v_layout',$data);
+        } else{
+          //pake notif pop up "You don't have access"
+          redirect('home');
+        }
       }
 
       public function psychologistlist()
       {
         /* Add and Edit will be included in this view, using modal */
-        $data = array(
-          'data_psy' => $this->M_psy->get_AllPsy(),
-          'main_view' => 'v_psyList',
-          'title' => 'Psychologist Data'
-        );
-		    $this->load->view('v_layout',$data);
+          if($this->session->userdata('role') == "admin"){
+        
+          $data = array(
+            'data_psy' => $this->M_psy->get_AllPsy(),
+            'main_view' => 'v_psyList',
+            'title' => 'Psychologist Data'
+          );
+          $this->load->view('v_layout',$data);
+        } else{
+          //pake notif pop up "You don't have access"
+          redirect('home');
+        }
       }
 
       
       public function clientList()
 	    {
-        $data = array(
-          'data_client' => $this->M_client->get_AllClient(),
-          'main_view' => 'v_clientList',
-          'title' => 'Client Data'
-        );
-		    $this->load->view('v_layout',$data);
+        /* Edit will be included in this view, using modal */
+
+          if($this->session->userdata('role') == "admin"){
+
+            $data = array(
+              'data_client' => $this->M_client->get_AllClient(),
+              'main_view' => 'v_clientList',
+              'title' => 'Client Data'
+            );
+            $this->load->view('v_layout',$data);
+          } else{
+            //pake notif pop up "You don't have access"
+            redirect('home');
+          }
+      }
+      public function menuAdmin()
+	    {
+        if($this->session->userdata('role') == "admin"){
+              $data = array(
+                'data_client' => $this->M_client->get_AllClient(),
+                'main_view' => 'v_menuAdmin',
+                'title' => 'Menu Admin'
+              );
+              $this->load->view('v_layout',$data);
+            } else{
+              //pake notif pop up "You don't have access"
+              redirect('home');
+            }
 	    }
 
      

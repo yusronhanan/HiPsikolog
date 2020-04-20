@@ -6,7 +6,6 @@ class M_appointment extends CI_Model {
 /*
 Handle anything about appointment (Counseling Transactions) and Counselling Package
 
-Appointment Status : requested, accepted, cancelled, or done.
 */
     public function add_appointment(){
         $data = array(
@@ -70,7 +69,7 @@ Appointment Status : requested, accepted, cancelled, or done.
     
     public function get_AllAppointment(){
        
-        return  $this->db->query("SELECT appointmentID,clientName,psyName,counsellingName,date,time,status FROM appointment natural join client natural join psy natural join counsellingpackage")->result();
+        return  $this->db->query("SELECT *, clientName,psyName,counsellingName,counsellingDuration FROM appointment natural join client natural join psy natural join counsellingpackage")->result();
         
     }
 
@@ -105,6 +104,13 @@ Appointment Status : requested, accepted, cancelled, or done.
         } else{
             return $id;
         }
+    }
+
+    public function getTimeList(){
+        return ["08:00", "09:00", "10:00", "11:00", "13:00", "14:00", "15:00"];
+    }
+    public function getStatusList(){
+        return ["Pending", "Accepted", "In Session", "Completed", "Decline", "Cancelled"];
     }
 }
 

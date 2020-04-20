@@ -32,7 +32,7 @@
 
           <h4 class="card-title"><?= $cp->counsellingName ?></h4>
           <h6 class="card-subtitle text-muted">Duration</h6>
-          <p class="card-text"><?= $cp->counsellingDuration ?></p>
+          <p class="card-text"><?= $cp->counsellingDuration ?> minutes</p>
         </div>
         <div class="back card-block">
         <h4 class="card-title"><?= $cp->counsellingName ?></h4>
@@ -42,7 +42,7 @@
         </p>
 
         <p class="text-muted">
-          <?= $cp->counsellingDuration ?>
+          <?= $cp->counsellingDuration ?> minutes
           only <?= 'Rp ' . number_format($cp->counsellingPrice);  ?>
           </p>
           <a href="<?= site_url('home/psychologistAppointment') ?>" class="btn btn-outline-primary">Continue Counselling</a>

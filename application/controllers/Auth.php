@@ -27,15 +27,15 @@ class Auth extends CI_Controller {
                 $name ="";
                 $role = "";
 
-                if($this->M_auth->login_admin){
+                if($this->M_auth->login_admin()){
                   $id =  $this->M_admin->get_Admin_ByEmail($this->input->post('email'))->adminID;
                   $name =$this->M_admin->get_Admin_ByEmail($this->input->post('email'))->adminEmail;
                   $role = "admin";
-                } else if($this->M_auth->login_psy){
+                } else if($this->M_auth->login_psy()){
                   $id =  $this->M_psy->get_Psy_ByEmail($this->input->post('email'))->psyID;
                   $name =$this->M_psy->get_Psy_ByEmail($this->input->post('email'))->psyEmail;
                   $role = "psy";
-                } else{
+                } else {
                   $id =  $this->M_client->get_Client_ByEmail($this->input->post('email'))->clientID;
                   $name =$this->M_client->get_Client_ByEmail($this->input->post('email'))->clientEmail;
                   $role = "client";

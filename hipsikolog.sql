@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2020 at 08:03 PM
+-- Generation Time: Apr 20, 2020 at 07:36 AM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -48,29 +48,6 @@ INSERT INTO `admin` (`adminID`, `adminName`, `adminEmail`, `adminPassword`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `appointment`
---
-
-CREATE TABLE `appointment` (
-  `appointmentID` varchar(10) NOT NULL,
-  `counsellingID` varchar(10) NOT NULL,
-  `clientID` varchar(10) NOT NULL,
-  `psyID` varchar(10) NOT NULL,
-  `date` date DEFAULT NULL,
-  `time` varchar(20) DEFAULT NULL,
-  `status` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `appointment`
---
-
-INSERT INTO `appointment` (`appointmentID`, `counsellingID`, `clientID`, `psyID`, `date`, `time`, `status`) VALUES
-('fiRSTfirst', '1', 'Cndjsnowdf', 'ghiidQfrth', '2020-04-01', '30 Minutes', 'Pending');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `client`
 --
 
@@ -96,8 +73,7 @@ INSERT INTO `client` (`clientID`, `clientName`, `clientEmail`, `clientPassword`,
 ('CXSjmnftWd', 'Rico', 'rico@gmail.com', '46464646', '089566113485', 'client22.jpg'),
 ('DcownSSdop', 'Dita', 'dita@gmail.com', '15648999', '081345674452', 'client24.jpg'),
 ('dmnsoRtiop', 'Wendy', 'wendy@gmail.com', '45613792', '089657613420', 'client15.jpg'),
-('FokwnlpRhm', 'Susan', 'susan@gmail.com', '23647895', '089654732159', 'client9.jpg'),
-('FopolknDwq', 'Fina', 'fina@gmail.com', '11111111', '081324562209', 'client25.jpg'),
+('FokwnlpRhm', 'Susann', 'susan@gmail.com', '23647895', '089654732159', ''),
 ('ghmmSggXop', 'Tini', 'tini@gmail.com', '12458794', '084566972534', 'client3.jpg'),
 ('GHsopkdXzm', 'Sunny', 'sunny@gmail.com', '44444444', '089431657222', 'client26.jpg'),
 ('godhmSdiCv', 'Surti', 'surti@gmail.com', '23156495', '084315679256', 'client13.jpg'),
@@ -139,9 +115,9 @@ CREATE TABLE `counsellingpackage` (
 --
 
 INSERT INTO `counsellingpackage` (`counsellingID`, `counsellingName`, `counsellingDuration`, `counsellingPrice`, `counsellingDesc`) VALUES
-('1', 'Introduction Package', '1 times in 1 week', 100000, 'For the first time, we provide the Introduction Package as the counselling to build trust and comfort settings.'),
-('2', 'Comfortable Package', '4 times in 1 months', 350000, 'Trust issue just solved. Feel free to consult often.'),
-('3', 'Cheerful Package', '12 times in 4 months', 924000, 'We are ready to provide your long journey with best counselling sessions. ');
+('1', 'Introduction Package', '45', 150000, 'For the first time, we provide the Introduction Package as the counselling to build trust and comfort settings.'),
+('2', 'Comfortable Package', '120', 250000, 'Trust issue just solved. Feel free to consult often.'),
+('3', 'Cheerful Package', '180', 375000, 'We are ready to provide your long journey with best counselling sessions. ');
 
 -- --------------------------------------------------------
 
@@ -165,10 +141,9 @@ CREATE TABLE `psy` (
 
 INSERT INTO `psy` (`psyID`, `psyName`, `psyEmail`, `psyPassword`, `psyPhoneNumber`, `psyPhoto`, `psyDesc`) VALUES
 ('argaEdnjWs', 'dr.Ganjar, S.Psi', 'ganjar@gmail.com', '11111111', '089456137544', '_', 'Love Life Specialist'),
-('bopsmcAQSF', 'dr.Salman, S.Psi', 'salman@gmail.com', '01588888', '081322546522', 'psi24.jpg', 'Love Life Specialist'),
+('bopsmcAQSF', 'dr.Salman, S.Psi', 'salmann@gmail.com', '01588888', '081322546522', '', 'Love Life Specialist'),
 ('cmnjuSdoqA', 'dr.Sinta, S.Psi', 'sinta@gmail.com', '14714714', '081472583698', 'psi19.jpg', 'Love Life Specialist'),
 ('CVBDSajdwo', 'dr.Dhiya, S.Psi', 'dhiya@gmail.com', '12456545', '089546357855', 'psi30.com', 'Love Life Specialist'),
-('dofGGhlith', 'dr.Heru, S.Psi', 'heru@gmail.com', '55555555', '081346995728', 'psi5.jpg', 'Love Life Specialist'),
 ('Drrghghjga', 'dr.Vina, S.Psi', 'vina@gmail.com', '25648894', '084629785344', 'psi14.jpg', 'Love Life Specialist'),
 ('fdsaERTYnk', 'dr.Karina, S.Psi', 'karina@gmail.com', '12431243', '089465723315', 'psi18.com', 'Love Life Specialist'),
 ('Fgcdfrtjk', 'dr.Romi, S.Psi', 'romi@gmail.com', '45764576', '084615349575', 'psi17.jpg', 'Love Life Specialist'),
@@ -206,15 +181,6 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`adminID`);
 
 --
--- Indexes for table `appointment`
---
-ALTER TABLE `appointment`
-  ADD PRIMARY KEY (`appointmentID`),
-  ADD KEY `counsellingID` (`counsellingID`),
-  ADD KEY `clientID` (`clientID`),
-  ADD KEY `psyID` (`psyID`);
-
---
 -- Indexes for table `client`
 --
 ALTER TABLE `client`
@@ -231,18 +197,6 @@ ALTER TABLE `counsellingpackage`
 --
 ALTER TABLE `psy`
   ADD PRIMARY KEY (`psyID`);
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `appointment`
---
-ALTER TABLE `appointment`
-  ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`counsellingID`) REFERENCES `counsellingpackage` (`counsellingID`),
-  ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`clientID`) REFERENCES `client` (`clientID`),
-  ADD CONSTRAINT `appointment_ibfk_3` FOREIGN KEY (`psyID`) REFERENCES `psy` (`psyID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

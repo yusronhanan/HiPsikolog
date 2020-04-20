@@ -19,6 +19,39 @@ class Appointment extends CI_Controller {
         
     }
 
+    public function addAppointment()
+    {
+      $this->form_validation->set_rules('clientID', 'Client Name', 'required');
+      $this->form_validation->set_rules('psyID', 'Psychologist Name', 'required');
+      $this->form_validation->set_rules('counsellingID', 'Package Name', 'required');
+      $this->form_validation->set_rules('status', 'Status', 'required');
+      $this->form_validation->set_rules('time', 'Time', 'required');
+      $this->form_validation->set_rules('date', 'Date', 'required');
+
+
+      
+      if ($this->form_validation->run() == TRUE) {
+                
+                  
+                    if ($this->M_appointment->add_appointment()) {
+                      $this->session->set_flashdata('type', 'success');
+                      $this->session->set_flashdata('notif', 'Success added data');
+                      redirect('/home/appointmentList'); /* need to modified */
+                    
+                    } else {
+                      $this->session->set_flashdata('notif', 'Failed to add data');
+                      redirect('/home/appointmentList'); /* need to modified */
+                    
+                    }
+                  
+               
+              
+      } else {
+              $this->session->set_flashdata('notif', 'One of required input is empty');
+              redirect('/home/clientList'); /* need to modified */
+      }
+    }
+
     public function deleteAppointment($id)
     {
       if($this->M_appointment->delete_appointment($id)){
@@ -33,28 +66,27 @@ class Appointment extends CI_Controller {
 
     public function editAppointment($id)
     {
-      $this->form_validation->set_rules('clientName', 'clientName', 'required');
-      $this->form_validation->set_rules('psyName', 'psyName', 'required');
-      $this->form_validation->set_rules('clientPassword', 'Password', 'required');
-      $this->form_validation->set_rules('clientPhoneNumber', 'Phone Number', 'required');
+      $this->form_validation->set_rules('clientID', 'Client Name', 'required');
+      $this->form_validation->set_rules('psyID', 'Psychologist Name', 'required');
+      $this->form_validation->set_rules('counsellingID', 'Package Name', 'required');
+      $this->form_validation->set_rules('status', 'Status', 'required');
+      $this->form_validation->set_rules('time', 'Time', 'required');
+      $this->form_validation->set_rules('date', 'Date', 'required');
+
 
       
       if ($this->form_validation->run() == TRUE) {
-                if (!empty($this->M_client->get_Client_ById($id))){
-                  $initialize = $this->upload->initialize(array(
-                    'upload_path' => './assets/img/',
-                    'allowed_types' => 'gif|jpg|jpeg|png'
-                  ));
-                    $this->upload->do_upload('uploadImage');
-                    $photo = $this->upload->data();
-                    if ($this->M_client->edit_client($id,$photo)) {
+                
+                if (!empty($this->M_appointment->get_Appointment_ById($id))){
+                  
+                    if ($this->M_appointment->edit_appointment($id)) {
                       $this->session->set_flashdata('type', 'success');
                       $this->session->set_flashdata('notif', 'Success updated data');
-                      redirect('/home/clientList'); /* need to modified */
+                      redirect('/home/appointmentList'); /* need to modified */
                     
                     } else {
                       $this->session->set_flashdata('notif', 'Failed to update data');
-                      redirect('/home/clientList'); /* need to modified */
+                      redirect('/home/appointmentList'); /* need to modified */
                     
                     }
                   

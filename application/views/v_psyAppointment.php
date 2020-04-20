@@ -14,7 +14,7 @@
               <img src="<?= base_url().'assets/img/'.$pa->psyPhoto?>" class="img-fluid" alt="<?= $pa->psyName?>">
           </div>
         </a>
-        </a> 
+         
         <?php } ?>
       </ul>
     </div>

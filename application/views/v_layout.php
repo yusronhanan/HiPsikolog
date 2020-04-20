@@ -39,14 +39,22 @@
 								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 									<a class="nav-link" href="<?= site_url('home/login') ?>">Login</a>
 								</li>
-								<?php } else{ ?>
-									<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-										<a class="nav-link" href="<?= site_url('home/myappointment') ?>">My Appointment</a>
-									</li>
+								<?php } else{ 
+											if($this->session->userdata('role') =="admin"){
+											?>
+											<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+												<a class="nav-link" href="<?= site_url('home/menuAdmin') ?>">Menu Admin</a>
+											</li>
+											<?php } else{ 	?>
+											<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+												<a class="nav-link" href="<?= site_url('home/myappointment') ?>">My Appointment</a>
+											</li>
+											<?php }  ?>
+
 									<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 										<a class="nav-link" href="<?= site_url('auth/logout') ?>">Logout</a>
 									</li>
-									<?php } ?>
+									<?php }  ?>
                                 <!-- 
                                     <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
 									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
