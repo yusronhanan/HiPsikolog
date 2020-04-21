@@ -133,7 +133,8 @@
   </div>
 <?php } ?>
 
-<!-- modal add  -->
+<!-- Modal Add Client -->
+
 <div class="modal fade" id="addAppointment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">

@@ -168,7 +168,6 @@ class Home extends CI_Controller {
           // $hour = date('H:i:s');
           // $data['hour'] = $hour;
           $data['pkg'] = $this->uri->segment(3);
-
           $data['data_package'] = $this->M_appointment->get_AllCounselling();
           $data['arrTime'] =$this->M_appointment->getTimeList();
           $data['title'] = 'Request Appointment';
@@ -183,7 +182,13 @@ class Home extends CI_Controller {
       {
         /* View psychologist information will be included in this view, using modal 
         "Appointment information in detail" will be included in this view, using modal */
-        
+        $id = $this->session->userdata('id');
+        $data['title'] = 'My Appointment';
+        $data['main_view'] = 'v_myappointment';
+        $data['data_psy'] = $this->M_psy->get_AllPsy();
+        $data['data_package'] = $this->M_appointment->get_AllCounselling();
+        $data['data_appointment'] = $this->M_appointment->get_Appointment_ByWhere('clientID',$id);
+			  $this->load->view('v_layout', $data);
       }
       
 

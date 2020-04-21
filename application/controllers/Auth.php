@@ -53,7 +53,7 @@ class Auth extends CI_Controller {
 
                 redirect('/home');
         } else {
-              $this->session->set_flashdata('notif', 'Invalid Username or Password');
+              $this->session->set_flashdata('notif', 'Invalid E-mail or Password');
               redirect('/home/login'); /* need to modified */
         }
       

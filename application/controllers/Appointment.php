@@ -123,6 +123,17 @@ class Appointment extends CI_Controller {
       }
     }
 
+    public function updateStatus()
+    {
+      $status = $this->uri->segment(3); 
+      $id = $this->uri->segment(4);
+      if($this->M_appointment->update_Appointment_ByWhere($id,'status',$status)){
+        $this->session->set_flashdata('type', 'success');
+        $this->session->set_flashdata('notif', 'Success cancel appointment');
+      }
+      redirect('/home/myappointment');
+    }
+
 }
 
 /* End of file Appointment.php */

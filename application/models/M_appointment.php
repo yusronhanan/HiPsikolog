@@ -85,14 +85,22 @@ Handle anything about appointment (Counseling Transactions) and Counselling Pack
                         ->row();
     }
 
-    public function get_Appointment_ByWhere($where){
-        return $this->db->where($where)
+    public function get_Appointment_ByWhere($where,$value){
+        return $this->db->where($where,$value)
                         ->get('appointment')
                         ->result();
     }
 
     public function get_AllCounselling(){
         return $this->db->get('counsellingpackage')->result();
+    }
+
+    public function update_Appointment_ByWhere($appointment_id,$where,$value){
+        $data = array(
+            $where => $value
+        );
+        $this->db->where('appointmentID',$appointment_id)->update('appointment', $data);
+		return ($this->db->affected_rows() > 0);
     }
 
     public function randomString_appointmentID()

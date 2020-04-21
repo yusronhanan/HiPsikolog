@@ -1,8 +1,6 @@
 <section class="py-5">
 <div class="container main-div">
     <div class="row h-100 justify-content-center align-items-center">
-   
-    
     <div class="col-12 col-sm-8 col-lg-10">
     <div class="form-group">
     <form action="<?= site_url('appointment/requestAppointment')?>" method="post" id="requestAppointment">
