@@ -204,11 +204,23 @@ class Home extends CI_Controller {
       
       }
 
-      public function myclient()
+      public function myprofile()
       {
        /* View client information 
-       "Client information in detail" will be included in this view, using modal*/ 
-        
+       "Client information in detail" will be included in this view, using modal*/
+       if($this->session->userdata('role') == "client"){
+          $id = $this->session->userdata('id');
+          $data['title'] = 'My Profile';
+          $data['main_view'] = 'v_myprofileClient';
+          $data['data_client'] = $this->M_client->get_Client_ById($id);
+          $this->load->view('v_layout', $data);
+       }else{
+        $id = $this->session->userdata('id');
+        $data['title'] = 'My Profile';
+        $data['main_view'] = 'v_myprofilePsy';
+        $data['data_psy'] = $this->M_psy->get_Psy_ById($id);
+			  $this->load->view('v_layout', $data);
+       }  
       }
 
       /* END Psychologist Pages (Need Login)*/
