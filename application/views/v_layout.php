@@ -46,11 +46,15 @@
 											<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 												<a class="nav-link" href="<?= site_url('home/menuAdmin') ?>">Menu Admin</a>
 											</li>
-											<?php } else{ 	?>
+											<?php } else if($this->session->userdata('role') =="client"){ 	?>
 											<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-												<a class="nav-link" href="<?= site_url('home/myappointment') ?>">My Appointment</a>
+												<a class="nav-link" href="<?= site_url('home/myappointmentClient') ?>">My Appointment</a>
 											</li>
-											<?php }  ?>
+											<?php } else { ?>
+											<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+												<a class="nav-link" href="<?= site_url('home/myappointmentPsy') ?>">My Appointment</a>
+											</li>
+											<?php }	  ?>
 
 									<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
 										<a class="nav-link" href="<?= site_url('auth/logout') ?>">Logout</a>

@@ -178,19 +178,31 @@ class Home extends CI_Controller {
 
       }
 
-      public function myappointment()
+      public function myappointmentClient()
       {
         /* View psychologist information will be included in this view, using modal 
         "Appointment information in detail" will be included in this view, using modal */
         $id = $this->session->userdata('id');
         $data['title'] = 'My Appointment';
-        $data['main_view'] = 'v_myappointment';
+        $data['main_view'] = 'v_myappointmentClient';
         $data['data_psy'] = $this->M_psy->get_AllPsy();
         $data['data_package'] = $this->M_appointment->get_AllCounselling();
         $data['data_appointment'] = $this->M_appointment->get_Appointment_ByWhere('clientID',$id);
 			  $this->load->view('v_layout', $data);
       }
       
+      public function myappointmentPsy()
+      {
+        /* View psychologist information will be included in this view, using modal 
+        "Appointment information in detail" will be included in this view, using modal */
+        $id = $this->session->userdata('id');
+        $data['title'] = 'My Appointment';
+        $data['main_view'] = 'v_appoinmentPsy';
+        $data['data_client'] = $this->M_client->get_AllClient();
+        $data['data_package'] = $this->M_appointment->get_AllCounselling();
+        $data['data_appointment'] = $this->M_appointment->get_Appointment_ByWhere('psyID',$id);
+        $this->load->view('v_layout', $data);
+      }
 
 
       /* END Client Pages (Need Login)*/
@@ -215,11 +227,11 @@ class Home extends CI_Controller {
           $data['data_client'] = $this->M_client->get_Client_ById($id);
           $this->load->view('v_layout', $data);
        }else{
-        $id = $this->session->userdata('id');
-        $data['title'] = 'My Profile';
-        $data['main_view'] = 'v_myprofilePsy';
-        $data['data_psy'] = $this->M_psy->get_Psy_ById($id);
-			  $this->load->view('v_layout', $data);
+          $id = $this->session->userdata('id');
+          $data['title'] = 'My Profile';
+          $data['main_view'] = 'v_myprofilePsy';
+          $data['data_psy'] = $this->M_psy->get_Psy_ById($id);
+			   $this->load->view('v_layout', $data);
        }  
       }
 

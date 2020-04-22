@@ -49,10 +49,15 @@
                     </tr>
                 </table>
                 </div>
-                <div class="card-footer d-flex justify-content-between align-items-start">
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#info<?= $da->psyID ?>">View Psychologist Information</button>
-                    <?php if($da->status != 'Cancelled'){ ?>
-                        <a href="<?= site_url('Appointment/updateStatus/Cancelled/'.$da->appointmentID)?>" class="btn btn-danger" onClick="return confirm('Are you sure?')">Cancel</a>
+                <div class="card-footer d-flex">
+                    <div class="mr-auto p-2">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#info<?= $da->clientID ?>">View Client Information</button>
+                    </div>
+                    <?php if($da->status == 'Requested'){ ?>
+                        <div class="p-2">
+                            <a href="<?= site_url('Appointment/updateStatus/Accepted/'.$da->appointmentID)?>" class="btn btn-success" onClick="return confirm('Are you sure?')">Accept</a>
+                            <a href="<?= site_url('Appointment/updateStatus/Decline/'.$da->appointmentID)?>" class="btn btn-danger" onClick="return confirm('Are you sure?')">Decline</a>
+                        </div>
                     <?php } ?>
                 </div>
             </div>
@@ -67,35 +72,30 @@
 
 <!-- Modal Psychologist Info -->
 
-<?php foreach ($data_psy as $d ) {?>
-<div class="modal fade" id="info<?php echo $d->psyID ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<?php foreach ($data_client as $d ) {?>
+<div class="modal fade" id="info<?php echo $d->clientID ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-        <h2>Psychologist Information</h2>
+        <h2>Client Information</h2>
         </div>
-        <img src="<?= base_url().'assets/img/'.$d->psyPhoto?>" class="img-fluid" alt="<?= $d->psyName?>">
+        <img src="<?= base_url().'assets/img/'.$d->clientPhoto?>" class="img-fluid" alt="<?= $d->clientName?>">
           <div class="modal-body">
                 <table>
                     <tr>
                         <th>Name</th>
                         <td>:</td>
-                        <td><?php echo $d->psyName ?></td>                                              
+                        <td><?php echo $d->clientName ?></td>                                              
                     </tr>
                     <tr>                
                         <th>E-mail</th>
                         <td>:</td>
-                        <td><?php echo $d->psyEmail ?></td>
+                        <td><?php echo $d->clientEmail ?></td>
                     </tr>
                     <tr>
                         <th>Phone Number</th>
                         <td>:</td>
-                        <td><?php echo $d->psyPhoneNumber ?></td>
-                    </tr>
-                    <tr>
-                        <th>Description</th>
-                        <td>:</td>
-                        <td><?php echo $d->psyDesc ?></td>
+                        <td><?php echo $d->clientPhoneNumber ?></td>
                     </tr>
                 </table>
         </div>

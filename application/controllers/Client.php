@@ -33,22 +33,36 @@ class Client extends CI_Controller {
                     if ($this->M_client->edit_client($id,$photo)) {
                       $this->session->set_flashdata('type', 'success');
                       $this->session->set_flashdata('notif', 'Success updated data');
-                      redirect('/home/clientList'); /* need to modified */
-                    
+                      if($this->session->userdata('role') == "admin"){
+                        redirect('/home/clientList');
+                      } else {
+                        redirect('/home/myprofile');
+                      }
                     } else {
                       $this->session->set_flashdata('notif', 'Failed to update data');
-                      redirect('/home/clientList'); /* need to modified */
-                    
+                      if($this->session->userdata('role') == "admin"){
+                        redirect('/home/clientList');
+                      } else {
+                        redirect('/home/myprofile');
+                      }
                     }
                   
                 } else {
                   $this->session->set_flashdata('notif', 'Data is not exist');
-                  redirect('/home/clientList'); /* need to modified */
+                  if($this->session->userdata('role') == "admin"){
+                      redirect('/home/clientList');
+                  } else {
+                      redirect('/home/myprofile');
+                  }
                 }
               
       } else {
               $this->session->set_flashdata('notif', 'One of required input is empty');
-              redirect('/home/clientList'); /* need to modified */
+              if($this->session->userdata('role') == "admin"){
+                  redirect('/home/clientList');
+              } else {
+                  redirect('/home/myprofile');
+              }
       }
     }
 
@@ -60,7 +74,6 @@ class Client extends CI_Controller {
       } else{
         $this->session->set_flashdata('notif', 'Failed to delete the data');
       }
-      ;
       redirect('/home/clientList');
     }
 
