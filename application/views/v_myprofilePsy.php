@@ -1,4 +1,3 @@
-<div class="py-2"></div>
 <section class="py-5">
   <div class="container col-lg-9">
   <div class="box main-div">
@@ -50,7 +49,6 @@
     </div>
   </div>
 </section>
-<div class="py-2"></div>
 
 <!-- Modal Edit Client -->
 
