@@ -40,29 +40,21 @@ class Psychologist extends CI_Controller {
                     if ($this->M_psy->add_psy($photo)) {
                       $this->session->set_flashdata('type', 'success');
                       $this->session->set_flashdata('notif', 'Success Added data');
-                      redirect('/home/psychologistList'); /* need to modified */
                     } else {
-                       
                       $this->session->set_flashdata('notif', 'Failed to add account');
-                      redirect('/home/psychologistList'); /* need to modified */
-                    
                     }
                   } else {
-                       
-                    $this->session->set_flashdata('notif', 'Failed to upload image');
-                    redirect('/home/psychologistList'); /* need to modified */
+                    $this->session->set_flashdata('notif', 'Failed to upload image');     
                   }
-                } else {
-                       
+                } else {    
                   $this->session->set_flashdata('notif', 'Email already exist');
-                  redirect('/home/psychologistList'); /* need to modified */
                 }
-      } else {
-                       
+      } else {      
               $this->session->set_flashdata('notif', 'One of required input is empty');
-              redirect('/home/psychologistList'); /* need to modified */
       }
-        
+
+        redirect('/home/psychologistList');/* need to modified */
+
       }
 
       public function editPsychologist($id)
@@ -90,24 +82,23 @@ class Psychologist extends CI_Controller {
                         if ($this->M_psy->edit_psy($id, $this->upload->data())) {
                         $this->session->set_flashdata('type', 'success');
                           $this->session->set_flashdata('notif', 'Success Updated data');
-                          redirect('/home/psychologistList'); /* need to modified */
                         } else {
-                          
-                          
+      
                           $this->session->set_flashdata('notif', 'Failed to edit the data');
-                          redirect('/home/psychologistList'); /* need to modified */
-                        
                         }
                       
                     } else {
                       
                       $this->session->set_flashdata('notif', 'Data is not exist exist');
-                      redirect('/home/psychologistList'); /* need to modified */
                     }
           } else {
                   
                   $this->session->set_flashdata('notif', 'One of required input is empty');
-                  redirect('/home/psychologistList'); /* need to modified */
+          }
+          if($this->session->userdata('role') == "admin"){
+            redirect('/home/psychologistList');/* need to modified */
+          } else {
+            redirect('/home/myprofile');
           }
       }
 

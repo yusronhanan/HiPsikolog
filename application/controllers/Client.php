@@ -32,37 +32,22 @@ class Client extends CI_Controller {
                     $photo = $this->upload->data();
                     if ($this->M_client->edit_client($id,$photo)) {
                       $this->session->set_flashdata('type', 'success');
-                      $this->session->set_flashdata('notif', 'Success updated data');
-                      if($this->session->userdata('role') == "admin"){
-                        redirect('/home/clientList');
-                      } else {
-                        redirect('/home/myprofile');
-                      }
+                      $this->session->set_flashdata('notif', 'Success updated data');                     
                     } else {
-                      $this->session->set_flashdata('notif', 'Failed to update data');
-                      if($this->session->userdata('role') == "admin"){
-                        redirect('/home/clientList');
-                      } else {
-                        redirect('/home/myprofile');
-                      }
-                    }
-                  
+                      $this->session->set_flashdata('notif', 'Failed to update data');                      
+                    }                  
                 } else {
-                  $this->session->set_flashdata('notif', 'Data is not exist');
-                  if($this->session->userdata('role') == "admin"){
-                      redirect('/home/clientList');
-                  } else {
-                      redirect('/home/myprofile');
-                  }
+                  $this->session->set_flashdata('notif', 'Data is not exist');                  
                 }
               
       } else {
               $this->session->set_flashdata('notif', 'One of required input is empty');
-              if($this->session->userdata('role') == "admin"){
-                  redirect('/home/clientList');
-              } else {
-                  redirect('/home/myprofile');
-              }
+              
+      }
+      if($this->session->userdata('role') == "admin"){
+        redirect('/home/clientList');
+      } else {
+        redirect('/home/myprofile');
       }
     }
 
