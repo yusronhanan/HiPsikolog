@@ -17,6 +17,51 @@
    
   </div>
 </header>
+
+<section class="py-5">
+  
+<div class="col-lg-10 offset-lg-1 pt-5 pb-5 bg-white text-light">
+<center>
+        <h2 style="color:black">Testimonials</h2>
+    </center>
+  <div id="client-testimonial-carousel" class="carousel slide" data-ride="carousel" style="height:200px;color:black">
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active text-center p-4">
+         
+          <p class="mb-0"> Just love it! My romance problem was handled well and no judge for sure.
+          </p>
+          <footer class="blockquote-footer">Ms G.<cite title="Source Title"> Students</cite></footer>
+          <!-- Client review stars -->
+          <!-- "fas fa-star" for a full star, "far fa-star" for an empty star, "far fa-star-half-alt" for a half star. -->
+         
+      </div>
+      <div class="carousel-item text-center p-4">
+         
+          <p class="mb-0">  Recommended to take the counselling to solve our problem. The Psychologist is good at it.
+          </p>
+          <footer class="blockquote-footer">Mr A <cite title="Source Title"> Employee</cite></footer>
+          <!-- Client review stars -->
+          <!-- "fas fa-star" for a full star, "far fa-star" for an empty star, "far fa-star-half-alt" for a half star. -->
+           
+      </div>
+      <div class="carousel-item text-center p-4">
+         
+          <p class="mb-0">  Never get better services rather than here. Hi Psikolog is the best !
+          </p>
+          <footer class="blockquote-footer">Ms F <cite title="Source Title"> Teacher</cite></footer>
+          <!-- Client review stars -->
+          <!-- "fas fa-star" for a full star, "far fa-star" for an empty star, "far fa-star-half-alt" for a half star. -->
+           
+      </div>
+    </div>
+    <ol class="carousel-indicators">
+      <li data-target="#client-testimonial-carousel" style="background-color:black" data-slide-to="0" class="active"></li>
+      <li data-target="#client-testimonial-carousel" style="background-color:black" data-slide-to="1"></li>
+      <li data-target="#client-testimonial-carousel" style="background-color:black" data-slide-to="2"></li>
+    </ol>
+  </div>
+</div>
+</section>
 <section class="py-5">
 <div class="container main-div">
     <center>
