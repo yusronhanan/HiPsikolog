@@ -1,5 +1,5 @@
 <section class="py-5">
-<div class="container main-div">
+<div class="container main-div" style="margin-bottom:250px">
     <div class="row h-100 justify-content-center align-items-center">
     <h2>MY APPOINTMENT</h2>
     <div class="col-12 col-sm-8 col-lg-10">
@@ -51,13 +51,24 @@
                 </div>
                 <div class="card-footer d-flex">
                     <div class="mr-auto p-2">
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#info<?= $da->clientID ?>">View Client Information</button>
+                        <button type="button" class="btn btn-info infoView" data-toggle="modal" data-target="#info" id="<?= $da->clientID ?>">View Client Information</button>
                     </div>
                     <?php if($da->status == 'Requested'){ ?>
                         <div class="p-2">
                             <a href="<?= site_url('Appointment/updateStatus/Accepted/'.$da->appointmentID)?>" class="btn btn-success" onClick="return confirm('Are you sure?')">Accept</a>
                             <a href="<?= site_url('Appointment/updateStatus/Decline/'.$da->appointmentID)?>" class="btn btn-danger" onClick="return confirm('Are you sure?')">Decline</a>
                             
+                        </div>
+                    <?php }?>
+                    <?php if($da->status == 'Accepted'){ ?>
+                        <div class="p-2">
+                            <a href="<?= site_url('Appointment/updateStatus/In Session/'.$da->appointmentID)?>" class="btn btn-success" onClick="return confirm('Are you sure?')">In Session</a>
+                            
+                        </div>
+                    <?php }?>
+                    <?php if($da->status == 'In Session'){ ?>
+                        <div class="p-2">
+                            <a href="<?= site_url('Appointment/updateStatus/Completed/'.$da->appointmentID)?>" class="btn btn-danger" onClick="return confirm('Are you sure?')">Completed</a>                            
                         </div>
                     <?php }?>
                      
@@ -75,15 +86,14 @@
 
 <!-- Modal Psychologist Info -->
 
-<?php foreach ($data_client as $d ) {?>
-<div class="modal fade" id="info<?php echo $d->clientID ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
         <h2>Client Information</h2>
         </div>
         <center>
-        <img src="<?= base_url().'assets/img/'.$d->clientPhoto?>" width="200px" class="img-fluid" alt="<?= $d->clientName?>">
+        <img src="" width="200px" class="img-fluid" alt="" id="view_clientPhoto">
         </center>
           
           <div class="modal-body">
@@ -91,21 +101,51 @@
                     <tr>
                         <th>Name</th>
                         <td>:</td>
-                        <td><?php echo $d->clientName ?></td>                                              
+                        <td id="view_clientName"></td>                                              
                     </tr>
                     <tr>                
                         <th>E-mail</th>
                         <td>:</td>
-                        <td><?php echo $d->clientEmail ?></td>
+                        <td id="view_clientEmail"></td>
                     </tr>
                     <tr>
                         <th>Phone Number</th>
                         <td>:</td>
-                        <td><?php echo $d->clientPhoneNumber ?></td>
+                        <td id="view_clientPhoneNumber"></td>
                     </tr>
                 </table>
         </div>
       </div>
     </div>
   </div>
-  <?php } ?>
+
+  <script type="text/javascript">
+  $(document).ready( function () {
+
+    $(".infoView").click(function(){
+    // to display in modal form automatically
+
+        // var psyName = $("input[id='edit_psyName']").val();
+        var clientID = $(this).attr('id');
+
+        $j.ajax({
+            url: '<?= base_url() ?>client/getClientID/',
+            type: 'POST',
+            data: {id:clientID},
+            dataType : 'json',
+            error: function() {
+              alert('Something is wrong');
+            },
+            success: function(data) {
+              $("#view_clientName").html(data.clientName);
+              $("#view_clientEmail").html(data.clientEmail);
+              $("#view_clientPhoneNumber").html(data.clientPhoneNumber);
+              $("#view_clientPhoto").attr('src',"<?= base_url().'assets/img/'?>"+data.clientPhoto);
+              $("#view_clientPhoto").attr('alt',""+data.clientName);
+            }
+        });
+
+
+        });
+});
+</script>

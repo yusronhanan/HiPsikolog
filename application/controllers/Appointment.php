@@ -125,25 +125,25 @@ class Appointment extends CI_Controller {
 
     public function updateStatus()
     {
-      $status = $this->uri->segment(3); 
+      $status = urldecode($this->uri->segment(3)); 
       $id = $this->uri->segment(4);
       if($this->M_appointment->update_Appointment_ByWhere($id,'status',$status)){
-        if($status == 'Cancelled'){
+        // if($status == 'Cancelled' || ){
           $this->session->set_flashdata('type', 'success');
-          $this->session->set_flashdata('notif', 'Success Cancel appointment');  
-        } else if($status == 'Accepted'){
-          $this->session->set_flashdata('type', 'success');
-          $this->session->set_flashdata('notif', 'Success Accept appointment');  
-        } else if($status == 'Decline'){
-          $this->session->set_flashdata('type', 'success');
-          $this->session->set_flashdata('notif', 'Success Decline appointment');  
-        }
+          $this->session->set_flashdata('notif', 'Success '.$status.' appointment');  
+        // } else if($status == 'Accepted'){
+        //   $this->session->set_flashdata('type', 'success');
+        //   $this->session->set_flashdata('notif', 'Success Accept appointment');  
+        // } else if($status == 'Decline'){
+        //   $this->session->set_flashdata('type', 'success');
+        //   $this->session->set_flashdata('notif', 'Success Decline appointment');  
+        // }
         
-        if($this->session->userdata('role') =="client"){
-          redirect('/home/myappointmentClient');
-        } else {
-          redirect('/home/myappointmentPsy');
-        }
+        // if($this->session->userdata('role') =="client"){
+          // redirect('/home/myappointment');
+        // } else {
+          redirect('/home/myappointment');
+        // }
       }
       
     }
