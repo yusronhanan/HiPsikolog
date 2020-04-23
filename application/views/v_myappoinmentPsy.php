@@ -57,8 +57,11 @@
                         <div class="p-2">
                             <a href="<?= site_url('Appointment/updateStatus/Accepted/'.$da->appointmentID)?>" class="btn btn-success" onClick="return confirm('Are you sure?')">Accept</a>
                             <a href="<?= site_url('Appointment/updateStatus/Decline/'.$da->appointmentID)?>" class="btn btn-danger" onClick="return confirm('Are you sure?')">Decline</a>
+                            
                         </div>
-                    <?php } ?>
+                    <?php }?>
+                     
+
                 </div>
             </div>
         </div>
@@ -79,7 +82,10 @@
         <div class="modal-header">
         <h2>Client Information</h2>
         </div>
-        <img src="<?= base_url().'assets/img/'.$d->clientPhoto?>" class="img-fluid" alt="<?= $d->clientName?>">
+        <center>
+        <img src="<?= base_url().'assets/img/'.$d->clientPhoto?>" width="200px" class="img-fluid" alt="<?= $d->clientName?>">
+        </center>
+          
           <div class="modal-body">
                 <table>
                     <tr>

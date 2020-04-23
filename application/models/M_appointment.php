@@ -58,14 +58,14 @@ Handle anything about appointment (Counseling Transactions) and Counselling Pack
 		return ($this->db->affected_rows() > 0); /* if success return true, false otherwise  */
     }
 
-    public function reply_requestAppointment($appointment_id){
-        $data = array(
-            'status' => $this->input->post('status') /* Appointment Status will change either cancelled or accepted. */
-        );
+    // public function reply_requestAppointment($appointment_id){
+    //     $data = array(
+    //         'status' => $this->input->post('status') /* Appointment Status will change either cancelled or accepted. */
+    //     );
 
-        $this->db->where('appointmentID',$appointment_id)->update('appointment', $data);
-		return ($this->db->affected_rows() > 0); /* if success return true, false otherwise  */
-    }
+    //     $this->db->where('appointmentID',$appointment_id)->update('appointment', $data);
+	// 	return ($this->db->affected_rows() > 0); /* if success return true, false otherwise  */
+    // }
     
     public function get_AllAppointment(){
        

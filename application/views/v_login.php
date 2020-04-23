@@ -1,5 +1,5 @@
 <section class="py-5">
-  <div class="container col-lg-6 main-div">
+  <div class="container col-lg-6 main-div" style="margin-bottom : 180px">
   <center>
     <form action="<?= site_url('auth/login') ?>" method="post">
 		<h2>Login</h2>

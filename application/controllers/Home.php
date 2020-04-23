@@ -83,7 +83,7 @@ class Home extends CI_Controller {
           );
           $this->load->view('v_layout',$data);
         } else{
-          //pake notif pop up "You don't have access"
+           $this->session->set_flashdata('notif', "You don't have access to this page/Login please");
           redirect('home');
         }
       }
@@ -100,7 +100,7 @@ class Home extends CI_Controller {
           );
           $this->load->view('v_layout',$data);
         } else{
-          //pake notif pop up "You don't have access"
+           $this->session->set_flashdata('notif', "You don't have access to this page/Login please");
           redirect('home');
         }
       }
@@ -119,7 +119,7 @@ class Home extends CI_Controller {
             );
             $this->load->view('v_layout',$data);
           } else{
-            //pake notif pop up "You don't have access"
+             $this->session->set_flashdata('notif', "You don't have access to this page/Login please");
             redirect('home');
           }
       }
@@ -133,7 +133,7 @@ class Home extends CI_Controller {
               );
               $this->load->view('v_layout',$data);
             } else{
-              //pake notif pop up "You don't have access"
+               $this->session->set_flashdata('notif', "You don't have access to this page/Login please");
               redirect('home');
             }
 	    }
@@ -162,7 +162,7 @@ class Home extends CI_Controller {
         /* View psychologist information in List, its the pages to choose the psychologist for the appointment
         "Psychologist information in detail" will be included in this view, using modal */
         if ($this->session->userdata('role') != "client") { 
-          $this->session->set_flashdata('notif', "You can't access this page");
+          $this->session->set_flashdata('notif', "You can't access this page/Login please");
           redirect('/home');
         } else{
           // $hour = date('H:i:s');
@@ -178,30 +178,36 @@ class Home extends CI_Controller {
 
       }
 
-      public function myappointmentClient()
-      {
-        /* View psychologist information will be included in this view, using modal 
-        "Appointment information in detail" will be included in this view, using modal */
-        $id = $this->session->userdata('id');
-        $data['title'] = 'My Appointment';
-        $data['main_view'] = 'v_myappointmentClient';
-        $data['data_psy'] = $this->M_psy->get_AllPsy();
-        $data['data_package'] = $this->M_appointment->get_AllCounselling();
-        $data['data_appointment'] = $this->M_appointment->get_Appointment_ByWhere('clientID',$id);
-			  $this->load->view('v_layout', $data);
-      }
+     
       
-      public function myappointmentPsy()
+      public function myappointment()
       {
-        /* View psychologist information will be included in this view, using modal 
-        "Appointment information in detail" will be included in this view, using modal */
-        $id = $this->session->userdata('id');
-        $data['title'] = 'My Appointment';
-        $data['main_view'] = 'v_appoinmentPsy';
-        $data['data_client'] = $this->M_client->get_AllClient();
-        $data['data_package'] = $this->M_appointment->get_AllCounselling();
-        $data['data_appointment'] = $this->M_appointment->get_Appointment_ByWhere('psyID',$id);
-        $this->load->view('v_layout', $data);
+        /* View psychologist/client information will be included in this view, using modal  */
+      
+        if ($this->session->userdata('logged_in') && $this->session->userdata('role') != "admin") {
+            $id = $this->session->userdata('id');
+        
+            if($this->session->userdata('role') == "client"){
+              $data['main_view'] = 'v_myappointmentClient';
+              $data['data_psy'] = $this->M_psy->get_AllPsy();
+              $data['data_appointment'] = $this->M_appointment->get_Appointment_ByWhere('clientID',$id);
+            } else{
+            //psy
+            $data['main_view'] = 'v_myappoinmentPsy';
+            $data['data_client'] = $this->M_client->get_AllClient();
+
+            $data['data_appointment'] = $this->M_appointment->get_Appointment_ByWhere('psyID',$id);
+            }
+
+            $data['title'] = 'My Appointment';
+            $data['data_package'] = $this->M_appointment->get_AllCounselling();
+            $this->load->view('v_layout', $data);
+          
+        } else{
+          $this->session->set_flashdata('notif', "You don't have access to this page/Login please");
+          redirect('/home/login');
+          
+        }
       }
 
 

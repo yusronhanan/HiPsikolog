@@ -31,7 +31,7 @@ Handle anything about pyschologist
             'psyDesc' => $this->input->post('psyDesc')
         );
         
-        if(!empty($photo)){
+        if($photo['file_name']!=""){
             $data['psyPhoto'] = $photo['file_name'];
         }
         

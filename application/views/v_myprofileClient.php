@@ -6,7 +6,7 @@
       <div class="col-lg-4">
         <div class="card shadow-sm">
           <div class="card-header bg-transparent text-center">
-            <img class="profile_img" src="<?php echo $data_client->clientPhoto ?>" alt="foto client">
+            <img class="profile_img" src="<?php echo base_url().'assets/img/'.$data_client->clientPhoto ?>" width="200px" alt="foto client">
             <h3><?php echo $data_client->clientName ?></h3>
           </div>
           <div class="card-body">

@@ -14,7 +14,7 @@ Handle anything about Client
             'clientPassword' => $this->input->post('clientPassword'),
             'clientPhoneNumber' => $this->input->post('clientPhoneNumber')
         );
-        if(!empty($photo)){
+        if($photo['file_name']!=""){
             $data['clientPhoto'] = $photo['file_name'];
         }
         

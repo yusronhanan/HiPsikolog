@@ -5,7 +5,7 @@
       <div class="col-lg-4">
         <div class="card shadow-sm">
           <div class="card-header bg-transparent text-center">
-            <img class="profile_img" src="<?php echo $data_psy->psyPhoto ?>" alt="foto Psychologist">
+            <img class="profile_img" src="<?php echo <?php echo base_url().'assets/img/'.$data_psy->psyPhoto ?>" width="200px" alt="foto Psychologist">
             <h3><?php echo $data_psy->psyName ?></h3>
           </div>
           <div class="card-body">

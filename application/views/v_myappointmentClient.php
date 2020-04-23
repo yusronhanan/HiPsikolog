@@ -74,7 +74,9 @@
         <div class="modal-header">
         <h2>Psychologist Information</h2>
         </div>
-        <img src="<?= base_url().'assets/img/'.$d->psyPhoto?>" class="img-fluid" alt="<?= $d->psyName?>">
+        <center>
+        <img src="<?= base_url().'assets/img/'.$d->psyPhoto?>"  width="200px"  class="img-fluid" alt="<?= $d->psyName?>">
+        </center>
           <div class="modal-body">
                 <table>
                     <tr>
