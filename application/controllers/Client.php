@@ -62,6 +62,9 @@ class Client extends CI_Controller {
       redirect('/home/clientList');
     }
 
+    public function getClientID(){
+      echo json_encode($this->M_client->get_Client_ById($this->input->post('id')));
+    }
 }
 
 /* End of file Client.php */

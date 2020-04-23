@@ -9,7 +9,7 @@
             <th>No</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Password</th>
+            <!-- <th>Password</th> -->
             <th>Phone Number</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -21,9 +21,9 @@
             <td><?php echo $no++?></td>
             <td><?php echo $d->clientName ?></td>
             <td><?php echo $d->clientEmail ?></td>
-            <td><?php echo $d->clientPassword ?></td>
+            <!-- <td><?php echo $d->clientPassword ?></td> -->
             <td><?php echo $d->clientPhoneNumber ?></td>
-            <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?= $d->clientID ?>"><i class="fas fa-user-edit"></i></button></td>
+            <td><button type="button" class="btn btn-warning editForm" id="<?= $d->clientID ?>" data-toggle="modal" data-target="#edit"><i class="fas fa-user-edit"></i></button></td>
             <td><a type="button" class="btn btn-danger"  href="<?= site_url('client/deleteClient/'.$d->clientID);?>" onClick="return confirm('Are you sure?')" ><i class="fas fa-user-times"></i></a></td>
           </tr>
           <?php } ?>
@@ -35,31 +35,30 @@
 
 <!-- Modal Edit Client -->
 
-<?php $no=1; foreach ($data_client as $d ) {?>
-  <div class="modal fade" id="edit<?php echo $d->clientID ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
         <h2>EDIT DATA <?php echo $d->clientName ?> </h2>
         </div>
         <div class="modal-body">
-        <form method="post" action="<?= site_url('client/editClient/'.$d->clientID);?>" enctype="multipart/form-data">
-        <input type="hidden" class="form-control" placeholder="Client ID" name="clientID" value="<?php echo $d->clientID ?>"  required>
+        <form method="post" action="<?= site_url('client/editClient/');?>" id="edit_form" enctype="multipart/form-data">
+        <input type="hidden" class="form-control" placeholder="Client ID" name="clientID" id="edit_clientID" value=""  required>
         <div class="form-group">
           <label for="formGroupExampleInput">Client Name</label>
-          <input type="text" class="form-control" placeholder="Client Name" name="clientName" value="<?php echo $d->clientName ?>" required >
+          <input type="text" class="form-control" placeholder="Client Name" name="clientName" id="edit_clientName" value="" required >
         </div>
         <div class="form-group">
           <label for="formGroupExampleInput">Client Email</label>
-          <input type="text" class="form-control" placeholder="Client Email" name="clientEmail" value="<?php echo $d->clientEmail ?>"required>
+          <input type="text" class="form-control" placeholder="Client Email" name="clientEmail" id="edit_clientEmail" value=""required>
         </div>
         <div class="form-group">
           <label for="formGroupExampleInput2">Client Password</label>
-          <input type="text" class="form-control" placeholder="Client Password" name="clientPassword" value="<?php echo $d->clientPassword ?>" required>
+          <input type="password" class="form-control" placeholder="Client Password" name="clientPassword" id="edit_clientPassword" value="" required>
         </div>
         <div class="form-group">
           <label for="formGroupExampleInput2">Client Phone Number</label>
-          <input type="text" class="form-control" placeholder="Client Phone Number" name="clientPhoneNumber" value="<?php echo $d->clientPhoneNumber ?>" required>
+          <input type="text" class="form-control" placeholder="Client Phone Number" name="clientPhoneNumber" id="edit_clientPhoneNumber" value="" required>
         </div>
         <div class="form-group">
                 <label for="formGroupExampleInput2">Ignore it, if don't want to change it</label>
@@ -83,6 +82,36 @@
       </div>
     </div>
   </div>
-<?php } ?>
 
 
+
+<script type="text/javascript">
+  $(document).ready( function () {
+
+    $(".editForm").click(function(){
+    // to display in modal form automatically
+
+        // var psyName = $("input[id='edit_psyName']").val();
+        var clientID = $(this).attr('id');
+
+        $.ajax({
+            url: '<?= base_url() ?>client/getClientID/',
+            type: 'POST',
+            data: {id:clientID},
+            dataType : 'json',
+            error: function() {
+              alert('Something is wrong');
+            },
+            success: function(data) {
+              $("#edit_clientName").val(data.clientName);
+              $("#edit_clientEmail").val(data.clientEmail);
+              $("#edit_clientPassword").val(data.clientPassword);
+              $("#edit_clientPhoneNumber").val(data.clientPhoneNumber);
+              $("#edit_form").attr('action',"<?= site_url('client/editClient/');?>"+data.clientID);
+            }
+        });
+
+
+        });
+});
+</script>

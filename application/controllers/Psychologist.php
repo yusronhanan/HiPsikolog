@@ -114,6 +114,10 @@ class Psychologist extends CI_Controller {
         redirect('/home/psychologistList');
       }
 
+      public function getPsyID(){
+        echo json_encode($this->M_psy->get_Psy_ById($this->input->post('id')));
+      }
+
 
 }
 

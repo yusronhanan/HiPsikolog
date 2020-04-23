@@ -106,6 +106,7 @@ class Home extends CI_Controller {
       }
 
       
+      
       public function clientList()
 	    {
         /* Edit will be included in this view, using modal */

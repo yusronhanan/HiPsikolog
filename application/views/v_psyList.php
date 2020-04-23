@@ -11,7 +11,7 @@
             <th>No</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Password</th>
+            <!-- <th>Password</th> -->
             <th>Phone Number</th>
             <th>Description</th>
             <th>Edit</th>
@@ -24,10 +24,10 @@
             <td><?php echo $no++?></td>
             <td><?php echo $d->psyName ?></td>
             <td><?php echo $d->psyEmail ?></td>
-            <td><?php echo $d->psyPassword ?></td>
+            <!-- <td><?php echo $d->psyPassword ?></td> -->
             <td><?php echo $d->psyPhoneNumber ?></td>
             <td><?php echo $d->psyDesc ?></td>
-            <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?= $d->psyID ?>"><i class="fas fa-user-edit"></i></button></td>
+            <td><button type="button" class="btn btn-warning editForm" data-toggle="modal" data-target="#edit" id="<?= $d->psyID ?>"><i class="fas fa-user-edit"></i></button></td>
             <td><a type="button" class="btn btn-danger"  href="<?= site_url('psychologist/deletePsychologist/'.$d->psyID);?>" onClick="return confirm('Are you sure?')" ><i class="fas fa-user-times"></i></a></td>
           </tr>
           <?php } ?>
@@ -39,36 +39,35 @@
 
 <!-- Modal Edit Psychologist -->
 
-<?php $no=1; foreach ($data_psy as $d ) {?>
-  <div class="modal fade" id="edit<?php echo $d->psyID ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-        <h2>EDIT DATA <?php echo $d->psyName ?> </h2>
+        <h2>EDIT DATA</h2>
         </div>
-        <form method="post" action="<?= site_url('psychologist/editPsychologist/'.$d->psyID);?>" enctype="multipart/form-data">
+        <form method="post" action="<?= site_url('psychologist/editPsychologist/');?>" id="edit_form" enctype="multipart/form-data">
 
           <div class="modal-body">
-            <!-- <input type="hidden" class="form-control" placeholder="psy ID" name="psyID" value="<?php echo $d->psyID ?>"  required> -->
+            <!-- <input type="hidden" class="form-control" placeholder="psy ID" name="psyID" id="edit_psyID" value=""  required> -->
             <div class="form-group">
               <label for="formGroupExampleInput">Psychologist Name</label>
-              <input type="text" class="form-control" placeholder="psy Name" name="psyName" value="<?php echo $d->psyName ?>" required >
+              <input type="text" class="form-control" placeholder="psy Name" name="psyName" id="edit_psyName" value="" required >
             </div>
             <div class="form-group">
               <label for="formGroupExampleInput">Psychologist Email</label>
-              <input type="text" class="form-control" placeholder="psy Email" name="psyEmail" value="<?php echo $d->psyEmail ?>"required>
+              <input type="text" class="form-control" placeholder="psy Email" name="psyEmail" id="edit_psyEmail" value=""required>
             </div>
             <div class="form-group">
               <label for="formGroupExampleInput2">Psychologist Password</label>
-              <input type="text" class="form-control" placeholder="psy Password" name="psyPassword" value="<?php echo $d->psyPassword ?>" required>
+              <input type="password" class="form-control" placeholder="psy Password" name="psyPassword" id="edit_psyPassword" value="" required>
             </div>
             <div class="form-group">
               <label for="formGroupExampleInput2">Psychologist Phone Number</label>
-              <input type="text" class="form-control" placeholder="psy Phone Number" name="psyPhoneNumber" value="<?php echo $d->psyPhoneNumber ?>" required>
+              <input type="text" class="form-control" placeholder="psy Phone Number" name="psyPhoneNumber" id="edit_psyPhoneNumber" value="" required>
             </div>
             <div class="form-group">
               <label for="formGroupExampleInput2">Psychologist Description</label>
-              <textarea class="form-control" placeholder="Psychologist Description" name="psyDesc" required><?php echo $d->psyDesc ?></textarea>
+              <textarea class="form-control" placeholder="Psychologist Description" name="psyDesc" id="edit_psyDesc" required></textarea>
             </div>
               <div class="form-group">
                 <label for="formGroupExampleInput2">Ignore it, if don't want to change it</label>
@@ -93,7 +92,7 @@
       </div>
     </div>
   </div>
-<?php } ?>
+
 
 <!-- Modal add Psychologist -->
 <div class="modal fade" id="addpsy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
@@ -103,7 +102,7 @@
       <h2>Add Data Psychologist</h2>
       </div>
       <div class="modal-body">
-        <form method="post" action="<?= site_url('psychologist/addPsychologist') ?>" enctype="multipart/form-data">
+        <form method="post" action="<?= site_url('psychologist/addPsychologist') ?>"  enctype="multipart/form-data">
             <!-- <input type="hidden" class="form-control" placeholder="Psychologist ID" name="psyID" required> -->
             <div class="form-group">
                 <label for="formGroupExampleInput">Psychologist Name</label>
@@ -115,7 +114,7 @@
             </div>
             <div class="form-group">
                 <label for="formGroupExampleInput2">Psychologist Password</label>
-                <input type="text" class="form-control" placeholder="Psychologist Password" name="psyPassword" required>
+                <input type="password" class="form-control" placeholder="Psychologist Password" name="psyPassword" required>
             </div>
             <div class="form-group">
                 <label for="formGroupExampleInput2">Psychologist Phone Number</label>
@@ -145,10 +144,41 @@
   </div>
 </div>
 
-<script src="<?= base_url() ?>assets/js/jquery.min.js"></script>
-<script>
-	$('.custom-file-input').on('change', function() { 
+<script type="text/javascript">
+  
+
+
+  $(document).ready( function () {
+    $('.custom-file-input').on('change', function() { 
 		let fileName = $(this).val().split('\\').pop(); 
 		$(this).next('.custom-file-label').addClass("selected").html(fileName); 
 	});
+
+    $(".editForm").click(function(){
+    // to display in modal form automatically
+
+        // var psyName = $("input[id='edit_psyName']").val();
+        var psyID = $(this).attr('id');
+
+        $.ajax({
+            url: '<?= base_url() ?>psychologist/getPsyID/',
+            type: 'POST',
+            data: {id:psyID},
+            dataType : 'json',
+            error: function() {
+              alert('Something is wrong');
+            },
+            success: function(data) {
+              $("#edit_psyName").val(data.psyName);
+              $("#edit_psyEmail").val(data.psyEmail);
+              $("#edit_psyPassword").val(data.psyPassword);
+              $("#edit_psyPhoneNumber").val(data.psyPhoneNumber);
+              $("#edit_psyDesc").html(data.psyDesc);
+              $("#edit_form").attr('action',"<?= site_url('psychologist/editPsychologist/');?>"+data.psyID);
+            }
+        });
+
+
+        });
+});
 </script>
