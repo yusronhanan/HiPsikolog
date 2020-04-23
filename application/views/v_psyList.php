@@ -9,11 +9,13 @@
         <thead>
           <tr>
             <th>No</th>
+            <th>ID</th>
             <th>Name</th>
             <th>Email</th>
-            <!-- <th>Password</th> -->
             <th>Phone Number</th>
             <th>Description</th>
+            <th>Photo</th>
+
             <th>Edit</th>
             <th>Delete</th>
           </tr>
@@ -22,11 +24,15 @@
           <?php $no=1; foreach ($data_psy as $d ) {?>
           <tr>
             <td><?php echo $no++?></td>
+            <td><?php echo $d->psyID ?></td>
+
             <td><?php echo $d->psyName ?></td>
             <td><?php echo $d->psyEmail ?></td>
             <!-- <td><?php echo $d->psyPassword ?></td> -->
             <td><?php echo $d->psyPhoneNumber ?></td>
             <td><?php echo $d->psyDesc ?></td>
+            <td><img width="100px" height="100px" src="<?php echo base_url().'assets/img/'.$d->psyPhoto ?>" alt="<?php echo $d->psyName ?>"></td>
+
             <td><button type="button" class="btn btn-warning editForm" data-toggle="modal" data-target="#edit" id="<?= $d->psyID ?>"><i class="fas fa-user-edit"></i></button></td>
             <td><a type="button" class="btn btn-danger"  href="<?= site_url('psychologist/deletePsychologist/'.$d->psyID);?>" onClick="return confirm('Are you sure?')" ><i class="fas fa-user-times"></i></a></td>
           </tr>

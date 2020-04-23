@@ -1,5 +1,5 @@
 <section class="py-5">
-<div class="container main-div" style="margin-bottom:250px">
+<div class="container main-div" style="margin-bottom:350px">
     <div class="row h-100 justify-content-center align-items-center">
     <h2>MY APPOINTMENT</h2>
     <div class="col-12 col-sm-8 col-lg-10">

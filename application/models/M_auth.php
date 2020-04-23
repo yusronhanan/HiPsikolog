@@ -67,7 +67,7 @@ Handle anything about authentication : Login, Register (Create Account for Clien
 
     public function randomString_clientID()
     {
-        $id = random_string('alnum', 10);
+        $id = random_string('numeric', 10);
         $query = $this->db->where('clientID',$id)->get('client');
 		if ($query->num_rows() > 0){
             return randomString_clientID();

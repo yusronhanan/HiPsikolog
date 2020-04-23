@@ -7,6 +7,7 @@
         <thead>
           <tr>
             <th>No</th>
+            <th>ID</th>
             <th>Name</th>
             <th>Email</th>
             <!-- <th>Password</th> -->
@@ -19,6 +20,8 @@
           <?php $no=1; foreach ($data_client as $d ) {?>
           <tr>
             <td><?php echo $no++?></td>
+            <td><?php echo $d->clientID ?></td>
+            
             <td><?php echo $d->clientName ?></td>
             <td><?php echo $d->clientEmail ?></td>
             <!-- <td><?php echo $d->clientPassword ?></td> -->
@@ -39,9 +42,12 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-        <h2>EDIT DATA <?php echo $d->clientName ?> </h2>
+        <h2>EDIT DATA </h2>
         </div>
         <div class="modal-body">
+          <center>
+        <img width="100px" height="100px" src="" alt="" id="clientPhoto">
+        </center>
         <form method="post" action="<?= site_url('client/editClient/');?>" id="edit_form" enctype="multipart/form-data">
         <input type="hidden" class="form-control" placeholder="Client ID" name="clientID" id="edit_clientID" value=""  required>
         <div class="form-group">
@@ -108,6 +114,9 @@
               $("#edit_clientPassword").val(data.clientPassword);
               $("#edit_clientPhoneNumber").val(data.clientPhoneNumber);
               $("#edit_form").attr('action',"<?= site_url('client/editClient/');?>"+data.clientID);
+              $("#clientPhoto").attr('src', "<?php echo base_url().'assets/img/'?>"+data.clientPhoto);
+              $("#clientPhoto").attr('alt', data.clientName);
+
             }
         });
 

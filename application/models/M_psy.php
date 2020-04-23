@@ -76,7 +76,7 @@ Handle anything about pyschologist
 
     public function randomString_psyID()
     {
-        $id = random_string('alnum', 10);
+        $id = random_string('numeric', 10);
         $query = $this->db->where('psyID',$id)->get('psy');
 		if ($query->num_rows() > 0){
             return randomString_psyID();

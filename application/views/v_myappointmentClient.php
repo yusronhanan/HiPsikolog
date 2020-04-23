@@ -1,8 +1,15 @@
 <section class="py-5">
-<div class="container main-div">
+<div class="container main-div" style="margin-bottom:250px">
     <div class="row h-100 justify-content-center align-items-center">
     <h2>MY APPOINTMENT</h2>
     <div class="col-12 col-sm-8 col-lg-10">
+        <?php if($data_appointment == null){ ?>
+            <br>
+            <br>
+            <br>
+       <a href="<?= site_url("home/counselling/")?>#counsellingpackage" style="margin: 0;" class="btn btn-primary">Make an Appointment</a>
+
+        <?php } ?>
       <ul class="list-group">
         <?php $no=1; foreach ($data_appointment as $da) { ?>     
         <div class="card">

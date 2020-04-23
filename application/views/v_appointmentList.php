@@ -10,6 +10,7 @@
         <thead>
           <tr>
             <th>No</th>
+            <th>ID</th>
             <th>Client Name</th>
             <th>Psychologist name</th>
             <th>Package Name</th>
@@ -24,6 +25,7 @@
           <?php $no=1; foreach ($data_appointment as $d ) {?>
           <tr>
             <td><?php echo $no++?></td>
+            <td><?php echo $d->appointmentID ?></td>
             <td><?php echo $d->clientName ?></td>
             <td><?php echo $d->psyName ?></td>
             <td><?php echo $d->counsellingName ?> (<?php echo $d->counsellingDuration ?> minutes)</td>

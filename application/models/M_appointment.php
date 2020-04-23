@@ -69,12 +69,13 @@ Handle anything about appointment (Counseling Transactions) and Counselling Pack
     
     public function get_AllAppointment(){
        
-        return  $this->db->query("SELECT *, clientName,psyName,counsellingName,counsellingDuration FROM appointment natural join client natural join psy natural join counsellingpackage")->result();
+        return  $this->db->query("SELECT *, clientName,psyName,counsellingName,counsellingDuration FROM appointment natural join client natural join psy natural join counsellingpackage order by date desc")->result();
         
     }
 
     public function get_AllAppointment_limit($limit,$start){
         return $this->db->limit($limit,$start)
+                        ->order_by('date','desc')
                         ->get('appointment')
                         ->result();
     }
@@ -87,6 +88,7 @@ Handle anything about appointment (Counseling Transactions) and Counselling Pack
 
     public function get_Appointment_ByWhere($where,$value){
         return $this->db->where($where,$value)
+                        ->order_by('date','desc')
                         ->get('appointment')
                         ->result();
     }
@@ -105,7 +107,7 @@ Handle anything about appointment (Counseling Transactions) and Counselling Pack
 
     public function randomString_appointmentID()
     {
-        $id = random_string('alnum', 10);
+        $id = random_string('numeric', 10);
         $query = $this->db->where('appointmentID',$id)->get('appointment');
 		if ($query->num_rows() > 0){
             return randomString_appointmentID();

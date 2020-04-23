@@ -114,9 +114,13 @@
                         <!-- </div> -->
                         <h4><a href="#">Psychological disorder</a></h4>
                     </div>
+                    
                 </div>
                 
-                
+              
             </div>
+                  
         </div>
-    </section>
+        <a href="<?= site_url("home/counselling/")?>#counsellingpackage" style="  margin: 0;" class="btn btn-primary">Continue Counselling</a>
+      </section>
+    

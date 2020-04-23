@@ -62,7 +62,7 @@
   </div>
 </div>
 </section>
-<section class="py-5">
+<section class="py-5" id="counsellingpackage">
 <div class="container main-div">
     <center>
         <h2>Counselling Package</h2>

@@ -151,6 +151,8 @@ class Appointment extends CI_Controller {
     public function getAppointmentID(){
       echo json_encode($this->M_appointment->get_Appointment_ById($this->input->post('id')));
     }
+
+    
 }
 
 /* End of file Appointment.php */

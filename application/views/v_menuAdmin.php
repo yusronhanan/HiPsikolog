@@ -2,7 +2,7 @@
 <div class="container main-div">
     <div class="row h-100 justify-content-center align-items-center">
     <div class="col-12 col-sm-8 col-lg-10">
-      <h6 class="text-muted">Psychologist</h6> 
+      <h6 class="text-muted">Menu Admin</h6> 
       <ul class="list-group">
       
         <a href="<?= site_url("home/appointmentList")?>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
@@ -11,7 +11,7 @@
             <p><small>Add, Edit, and Delete</small></p>
           </div>
           <div class="image-parent">
-              <img src="<?= base_url().'assets/img/'?>config.png" class="img-fluid" alt="" width="100px">
+              <img src="<?= base_url().'assets/img/'?>appointment.png" class="img-fluid" alt="" width="100px">
           </div>
         </a>
 
@@ -21,7 +21,7 @@
             <p><small>Add, Edit, and Delete</small></p>
           </div>
           <div class="image-parent">
-              <img src="<?= base_url().'assets/img/'?>config.png" class="img-fluid" alt="" width="100px">
+              <img src="<?= base_url().'assets/img/'?>psy.png" class="img-fluid" alt="" width="100px">
           </div>
         </a>
 
@@ -31,7 +31,7 @@
             <p><small>Edit and Delete</small></p>
           </div>
           <div class="image-parent">
-              <img src="<?= base_url().'assets/img/'?>config.png" class="img-fluid" alt="" width="100px">
+              <img src="<?= base_url().'assets/img/'?>society.png" class="img-fluid" alt="" width="100px">
           </div>
         </a>
       </ul>
