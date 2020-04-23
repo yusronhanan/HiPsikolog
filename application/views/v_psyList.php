@@ -160,7 +160,7 @@
         // var psyName = $("input[id='edit_psyName']").val();
         var psyID = $(this).attr('id');
 
-        $.ajax({
+        $j.ajax({
             url: '<?= base_url() ?>psychologist/getPsyID/',
             type: 'POST',
             data: {id:psyID},

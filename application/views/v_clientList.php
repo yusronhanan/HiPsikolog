@@ -94,7 +94,7 @@
         // var psyName = $("input[id='edit_psyName']").val();
         var clientID = $(this).attr('id');
 
-        $.ajax({
+        $j.ajax({
             url: '<?= base_url() ?>client/getClientID/',
             type: 'POST',
             data: {id:clientID},
