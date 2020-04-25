@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2020 at 03:57 PM
+-- Generation Time: Apr 25, 2020 at 03:03 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -67,12 +67,14 @@ CREATE TABLE `appointment` (
 
 INSERT INTO `appointment` (`appointmentID`, `counsellingID`, `clientID`, `psyID`, `date`, `time`, `status`) VALUES
 ('1345267676', '3', '889098765', '1222231311', '2020-04-20', '13:00', 'Requested'),
+('3724081659', '3', '889098765', '213123123', '2020-04-25', '08:00', 'Requested'),
 ('3854921670', '3', '661213289', '1222231311', '2020-04-24', '08:00', 'Requested'),
 ('5545567876', '3', '889098765', '4544234234', '2020-04-23', '10:00', 'Requested'),
 ('5556667778', '2', '889098765', '2222333222', '2020-04-20', '08:00', 'Completed'),
 ('6655667787', '2', '456456671', '432343421', '2020-04-20', '08:00', 'Requested'),
 ('6718025439', '3', '666777823', '1222231311', '2020-04-24', '08:00', 'In Session'),
-('7778882371', '2', '887889876', '2222333222', '2020-04-27', '10:00', 'Requested'),
+('7778882371', '2', '887889876', '2222333222', '2020-04-27', '10:00', 'Completed'),
+('9162750348', '2', '889098765', '121212334', '2020-04-25', '08:00', 'Cancelled'),
 ('9989897678', '3', '1222112112', '1222231311', '2020-04-25', '10:00', 'In Session');
 
 -- --------------------------------------------------------
@@ -162,14 +164,14 @@ INSERT INTO `psy` (`psyID`, `psyName`, `psyEmail`, `psyPassword`, `psyPhoneNumbe
 ('121212334', 'dr.Karina, S.Psi', 'karina@gmail.com', '12431243', '089465723315', 'download1.png', 'Romance And Family Relationships Specialist'),
 ('1222231311', 'dr.Sinta, S.Psi', 'sinta@gmail.com', '14714714', '081472583698', 'woman_(3).png', 'Career And Academic Specialist'),
 ('12312312323', 'dr.Ganjar, S.Psi', 'ganjar@gmail.com', '11111111', '089456137544', 'people_(2).png', 'Romance And Family Relationships Specialist'),
-('134343434', 'dr.Anna, S.Psi', 'anna@gmail.com', '56423887', '089461257988', 'teacher.png', 'Career And Academic Specialist'),
+('134343434', 'dr.Anna, S.Psi', 'anna@gmail.com', '56423887', '089461257988', 'teacher.png', 'Psychological Disorder Specialist'),
 ('213123123', 'dr.Naufal, S.Psi', 'naufal@gmail.com', '45621879', '081546759462', 'avatars.png', 'Career And Academic Specialist'),
 ('213123213', 'dr.Rudi, S.Psi', 'rudi@gmail.com', '78945612', '087943156321', 'man_(1).png', 'Career And Academic Specialist'),
 ('2222333222', 'dr.Salman, S.Psi', 'salmann@gmail.com', '01588888', '081322546522', 'home-office.png', 'Romance And Family Relationships Specialist'),
-('324235234', 'dr.Gani, S.Psi', 'gani@gmail.com', '45221756', '089463152477', 'virus.png', 'Career And Academic Specialist'),
+('324235234', 'dr.Gani, S.Psi', 'gani@gmail.com', '45221756', '089463152477', 'virus.png', 'Psychological Disorder Specialist'),
 ('3343432234', 'dr.Romi, S.Psi', 'romi@gmail.com', '45764576', '084615349575', 'man_(2).png', 'Romance And Family Relationships Specialist'),
 ('3432234233', 'dr.Najmi, S.Psi', 'najmi@gmail.com', '45798457', '081355664975', 'avatar.png', 'Addiction Specialist'),
-('432343421', 'dr.Cindy, S.Psi', 'cindy@gmail.com', '22222222', '089461257644', 'woman.png', 'Romance And Family Relationships Specialist'),
+('432343421', 'dr.Cindy, S.Psi', 'cindy@gmail.com', '22222222', '089461257644', 'woman.png', 'Psychological Disorder Specialist'),
 ('4544234234', 'dr.Vina, S.Psi', 'vina@gmail.com', '25648894', '084629785344', 'doctor_(1).png', 'Career And Academic Specialist'),
 ('6767657466', 'dr.Kora, S.Psi', 'kora@gmail.com', '45612300', '089436157244', 'user.png', 'Addiction Specialist'),
 ('86786786765', 'dr.Zainal, S.Psi', 'zainal@gmail.com', '36985201', '083369874123', 'man1.png', 'Addiction Specialist');
