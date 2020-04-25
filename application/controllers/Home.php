@@ -171,9 +171,10 @@ class Home extends CI_Controller {
           $data['pkg'] = $this->uri->segment(3);
           $data['data_package'] = $this->M_appointment->get_AllCounselling();
           $data['arrTime'] =$this->M_appointment->getTimeList();
+          $data['psyDescList'] = $this->M_psy->psyDescList();
           $data['title'] = 'Request Appointment';
           $data['main_view'] = 'v_requestAppointment';
-          $data['psyAppointment'] = $this->M_psy->get_AllPsy();
+          // $data['psyAppointment'] = $this->M_psy->get_AllPsy();
 			    $this->load->view('v_layout', $data);
         }
 

@@ -118,6 +118,17 @@ class Psychologist extends CI_Controller {
         echo json_encode($this->M_psy->get_Psy_ById($this->input->post('id')));
       }
 
+      public function getPsyFilter(){
+        
+        $psyDesc=$this->input->post('psyDesc');
+        if($psyDesc ==""){
+          echo json_encode($this->M_psy->get_AllPsy());
+        } else{
+          echo json_encode($this->M_psy->get_Psy_ByWhere(array("psyDesc"=>$psyDesc)));
+        }
+        
+      }
+
 
 }
 

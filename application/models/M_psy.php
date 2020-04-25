@@ -84,6 +84,10 @@ Handle anything about pyschologist
             return $id;
         }
     }
+
+    public function psyDescList(){
+        return $this->db->query("SELECT DISTINCT psyDesc from psy group by psyDesc")->result();
+    }
 }
 
 /* End of file M_psy.php */

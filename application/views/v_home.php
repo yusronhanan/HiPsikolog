@@ -67,7 +67,7 @@
                             <!-- </span> -->
 
                         <!-- </div> -->
-                        <h4><a href="#">Romance and family relationships</a></h4>
+                        <h4><a style="color:black">Romance and family relationships</a></h4>
                     </div>
                 </div>
                 
@@ -82,7 +82,7 @@
                             <!-- </span> -->
 
                         <!-- </div> -->
-                        <h4><a href="#"> Career and Academic</a></h4>
+                        <h4><a style="color:black"> Career and Academic</a></h4>
                     </div>
                 </div>
                 
@@ -97,7 +97,7 @@
                             <!-- </span> -->
 
                         <!-- </div> -->
-                        <h4><a href="#">Addiction</a></h4>
+                        <h4><a style="color:black">Addiction</a></h4>
                     </div>
                 </div>
                 
@@ -112,7 +112,7 @@
                             <!-- </span> -->
 
                         <!-- </div> -->
-                        <h4><a href="#">Psychological disorder</a></h4>
+                        <h4><a style="color:black">Psychological disorder</a></h4>
                     </div>
                     
                 </div>

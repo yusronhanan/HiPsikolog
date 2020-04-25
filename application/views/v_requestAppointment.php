@@ -29,21 +29,24 @@
             <?php } ?>
             </select>
     </div>
-      <h6 class="text-muted">Choose Psychologist to Request an Appointment</h6> 
+      <h6 class="text-muted">Choose Psychologist to Request an Appointment</h6>
+      <center>
+      <div class="form-group col-lg-6">
+          <label for="formGroupExampleInput2">Psychologist Specialist</label>
+            <select class="form-control filterPsy" id="formGroupExampleInput2" name="psyDescList" required>
+            <option value=""  >--ALL--</option>
+
+            <?php foreach ($psyDescList as $pDL) {?>
+                  <option value="<?= $pDL->psyDesc; ?>"  ><?= $pDL->psyDesc ?></option>
+                
+            <?php } ?>
+           
+            </select>
+    </div>
+    </center>
       <input type="hidden" name="psyID">
-      <ul class="list-group">
-      <?php foreach ($psyAppointment as $pa) { ?>
-        <a onclick="counselling('<?= $pa->psyID?>')" id="selectPsy" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-          <div class="flex-column">
-            <?= $pa->psyName?>
-            <p><small><?= $pa->psyDesc?></small></p>
-          </div>
-          <div class="image-parent">
-              <img width="150px" src="<?= base_url().'assets/img/'.$pa->psyPhoto?>" class="img-fluid" alt="<?= $pa->psyName?>">
-          </div>
-        </a>
-         
-        <?php } ?>
+      <ul class="list-group" id="listPsy">
+      
       </ul>
       </form>
     </div>
@@ -51,13 +54,49 @@
   </div>
 </div>
 </section>
+<script type="text/javascript">
+  $(document).ready( function () {
+  loadPsy("");
+  
+  $j(".filterPsy").on('change', function(){
+    loadPsy($(this).val());
+  });
+});
 
-<script>
-  function counselling(psyID){
+  function counselling(){
+      var psyID = $(this).attr("id");
       $("[name='psyID']").val(psyID);
       var isSubmit = confirm("Are you sure ?");
       if(isSubmit){
       $("form#requestAppointment").submit();
       }
+    }
+
+    function loadPsy(psyDesc){
+  
+        $j.ajax({
+            url: '<?= base_url() ?>psychologist/getPsyFilter/',
+            type: 'POST',
+            data: {psyDesc:psyDesc},
+            dataType : 'json',
+            error: function() {
+              alert('Something is wrong');
+            },
+            success: function(data) {
+              var resultHTML = '';
+              for (var i = 0; i < data.length; i++) {
+                resultHTML += '<a id="'+data[i].psyID+'" class="selectPsy list-group-item list-group-item-action d-flex justify-content-between align-items-center"><div class="flex-column">'
+                        +data[i].psyName
+                        +'<p><small>'
+                        +data[i].psyDesc
+                        +'</small></p> </div><div class="image-parent"><img width="150px" src="<?= base_url()."assets/img/"?>'
+                        +data[i].psyPhoto
+                        +'" class="img-fluid"></div></a>';
+              }
+              $("#listPsy").html(resultHTML);
+              $j(".selectPsy").on('click',counselling);
+            }
+        });
+
     }
 </script>
