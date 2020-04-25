@@ -100,6 +100,14 @@ Handle anything about appointment (Counseling Transactions) and Counselling Pack
         return $this->db->query("select * from appointment where clientID = ".$id." and (status = 'Completed' or status = 'Decline' or status ='Cancelled') order by date desc")
         ->result();
     }
+    public function get_Appointment_ActivePsy($id){
+        return $this->db->query("select * from appointment where psyID = ".$id." and (status = 'Requested' or status = 'Accepted' or status ='In Session') order by date desc")
+                        ->result();
+    }
+    public function get_Appointment_HistoryPsy($id){
+        return $this->db->query("select * from appointment where psyID = ".$id." and (status = 'Completed' or status = 'Decline' or status ='Cancelled') order by date desc")
+        ->result();
+    }
 
     public function get_AllCounselling(){
         return $this->db->get('counsellingpackage')->result();
