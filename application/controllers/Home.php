@@ -192,13 +192,15 @@ class Home extends CI_Controller {
             if($this->session->userdata('role') == "client"){
               $data['main_view'] = 'v_myappointmentClient';
               $data['data_psy'] = $this->M_psy->get_AllPsy();
-              $data['data_appointment'] = $this->M_appointment->get_Appointment_ByWhere('clientID',$id);
+              $data['data_appointment_active'] = $this->M_appointment->get_Appointment_ActiveClient($id);
+              $data['data_appointment_history'] = $this->M_appointment->get_Appointment_HistoryClient($id);
+              
             } else{
             //psy
             $data['main_view'] = 'v_myappoinmentPsy';
             $data['data_client'] = $this->M_client->get_AllClient();
 
-            $data['data_appointment'] = $this->M_appointment->get_Appointment_ByWhere('psyID',$id);
+            $data['data_appointment'] = $this->M_appointment->get_Appointment_ByWhere(array('psyID'=>$id));
             }
 
             $data['title'] = 'My Appointment';

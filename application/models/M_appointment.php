@@ -86,11 +86,19 @@ Handle anything about appointment (Counseling Transactions) and Counselling Pack
                         ->row();
     }
 
-    public function get_Appointment_ByWhere($where,$value){
-        return $this->db->where($where,$value)
+    public function get_Appointment_ByWhere($where){
+        return $this->db->where($where)
                         ->order_by('date','desc')
                         ->get('appointment')
                         ->result();
+    }
+    public function get_Appointment_ActiveClient($id){
+        return $this->db->query("select * from appointment where clientID = ".$id." and (status = 'Requested' or status = 'Accepted' or status ='In Session') order by date desc")
+                        ->result();
+    }
+    public function get_Appointment_HistoryClient($id){
+        return $this->db->query("select * from appointment where clientID = ".$id." and (status = 'Completed' or status = 'Decline' or status ='Cancelled') order by date desc")
+        ->result();
     }
 
     public function get_AllCounselling(){
