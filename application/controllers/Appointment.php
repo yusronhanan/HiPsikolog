@@ -82,7 +82,7 @@ class Appointment extends CI_Controller {
       } else{
         $this->session->set_flashdata('notif', 'Failed to delete the data');
       }
-      ;
+      
       redirect('/home/appointmentList');
     }
 
